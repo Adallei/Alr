@@ -6,3 +6,9 @@
 	branch = version/1.12.2
 [submodule "Bukkit"]
 	branch = version/1.12.2
+[submodule "work/CraftBukkit"]
+	path = work/CraftBukkit
+	url = https://hub.spigotmc.org/stash/scm/spigot/craftbukkit.git
+[submodule "work/Spigot"]
+	path = work/Spigot
+	url = https://hub.spigotmc.org/stash/scm/spigot/spigot.git

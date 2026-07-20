@@ -12,3 +12,6 @@
 [submodule "work/Spigot"]
 	path = work/Spigot
 	url = https://hub.spigotmc.org/stash/scm/spigot/spigot.git
+[submodule "work/BuildData"]
+	path = work/BuildData
+	url = https://hub.spigotmc.org/stash/scm/spigot/builddata.git

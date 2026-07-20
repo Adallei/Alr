@@ -1,0 +1,8 @@
+[submodule "work/Bukkit"]
+	path = work/Bukkit
+	url = https://hub.spigotmc.org/stash/scm/spigot/bukkit.git
+	branch = version/1.12.2
+[submodule "Spigot"]
+	branch = version/1.12.2
+[submodule "Bukkit"]
+	branch = version/1.12.2

@@ -1,0 +1,40 @@
+From 0c4e5050fc497813ec428f14a6421eff65400bd9 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Thu, 26 May 2022 23:49:40 +0500
+Subject: [PATCH] fix: tile entity ticking crash
+
+Fixes a NoSuchElementException crash when ticking tile entities, which happens due to bad plugins.
+
+diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
+index e545e9764..b0a0ba459 100644
+--- a/src/main/java/net/minecraft/server/WorldServer.java
++++ b/src/main/java/net/minecraft/server/WorldServer.java
+@@ -760,7 +760,15 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+                 NextTickListEntry nextticklistentry;
+ 
+                 for (int j = 0; j < i; ++j) {
++                    // Reaper start - Fix TileEntity ticking crash
++                    try {
+                     nextticklistentry = (NextTickListEntry) this.nextTickList.first();
++                    } catch (java.util.NoSuchElementException e) {
++                        LogManager.getLogger().warn("NextTickList got an inconsistency in the world " + worldData.getName() + ", fixing it.");
++                        nextTickList.fixInconsistence();
++                        break;
++                    }
++                    // Reaper end
+                     if (!flag && nextticklistentry.b > this.worldData.getTime()) {
+                         break;
+                     }
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java b/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java
+index cd864c404..4a7120b83 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java
+@@ -114,4 +114,5 @@ public class HashTreeSet<V> implements Set<V> {
+         return tree.first();
+     }
+ 
++    public void fixInconsistence() { hash.removeIf(entry -> !tree.contains(entry)); } // Reaper - Fix TileEntity ticking crash
+ }
+-- 
+2.50.1.windows.1
+

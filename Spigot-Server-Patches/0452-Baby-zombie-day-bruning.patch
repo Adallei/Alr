@@ -1,0 +1,35 @@
+From 879fb787f5495f6d9e704668e16ebca4b8a482f6 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Tue, 16 Jun 2026 09:32:40 +0800
+Subject: [PATCH] Baby-zombie-day-bruning
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
+index bc6f90928..e9b837b6b 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
+@@ -609,4 +609,8 @@ public class PaperWorldConfig {
+             log("Using vanilla redstone algorithm.");
+         }
+     }
++    public boolean babyZombieDayBurning = false;
++    private void babyZombieDayBurning() {
++        babyZombieDayBurning = getBoolean("baby-zombie-day-burning", false);
++    }
+ }
+diff --git a/src/main/java/net/minecraft/server/EntityZombie.java b/src/main/java/net/minecraft/server/EntityZombie.java
+index 6111ca0b2..b85d77001 100644
+--- a/src/main/java/net/minecraft/server/EntityZombie.java
++++ b/src/main/java/net/minecraft/server/EntityZombie.java
+@@ -120,7 +120,7 @@ public class EntityZombie extends EntityMonster {
+     }
+ 
+     public void n() {
+-        if (this.world.D() && !this.world.isClientSide && !this.isBaby() && this.p()) {
++        if (this.world.D() && !this.world.isClientSide && !this.isBaby() || world.paperConfig.babyZombieDayBurning && this.p()) { // Alr Baby zombie day burning
+             float f = this.aw();
+ 
+             if (f > 0.5F && this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.h(new BlockPosition(this.locX, this.locY + (double) this.getHeadHeight(), this.locZ))) {
+-- 
+2.50.1.windows.1
+

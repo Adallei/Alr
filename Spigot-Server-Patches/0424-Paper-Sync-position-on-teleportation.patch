@@ -1,0 +1,29 @@
+From c7d5535ff36309573f5b48f379315ed4a3fe355e Mon Sep 17 00:00:00 2001
+From: Softik Lord <dimap9986@gmail.com>
+Date: Mon, 18 Jul 2022 13:09:45 +0500
+Subject: [PATCH] Paper-Sync-position-on-teleportation
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index af6e5a3d7..c59bda959 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -480,6 +480,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 this.o = this.teleportPos.x;
+                 this.p = this.teleportPos.y;
+                 this.q = this.teleportPos.z;
++                this.syncPosition(); // Paper
+                 this.player.M();
+             }
+ 
+@@ -527,6 +528,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 if (this.teleportPos != null) {
+                     if (this.e - this.A > 20) {
+                         this.A = this.e;
++                        this.syncPosition(); // Paper
+                         this.a(this.teleportPos.x, this.teleportPos.y, this.teleportPos.z, this.player.yaw, this.player.pitch);
+                     }
+                     this.allowedPlayerTicks = 20; // CraftBukkit
+-- 
+2.50.1.windows.1
+

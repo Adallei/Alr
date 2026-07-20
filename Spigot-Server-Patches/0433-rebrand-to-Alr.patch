@@ -1,0 +1,135 @@
+From 613ccafc4b3fec8f7cb75662fd19f514c59ddf0d Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 11 Jun 2026 16:43:59 +0800
+Subject: [PATCH] rebrand-to-Alr
+
+
+diff --git a/pom.xml b/pom.xml
+index d60021747..50aaac884 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -1,12 +1,12 @@
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+-    <groupId>com.destroystokyo.paper</groupId>
+-    <artifactId>paper</artifactId>
++    <groupId>com.adallei.alr</groupId>
++    <artifactId>alr</artifactId>
+     <packaging>jar</packaging>
+     <version>1.12.2-R0.1-SNAPSHOT</version>
+-    <name>Paper</name>
+-    <url>https://github.com/PaperMC/Paper</url>
++    <name>Alr</name>
++    <url>https://mc.alr.re</url>
+ 
+     <properties>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+@@ -36,8 +36,8 @@
+             <scope>compile</scope>
+         </dependency>
+         <dependency>
+-            <groupId>com.destroystokyo.paper</groupId>
+-            <artifactId>paper-api</artifactId>
++            <groupId>com.adallei.alr</groupId>
++            <artifactId>alr-api</artifactId>
+             <version>${project.version}</version>
+             <scope>compile</scope>
+         </dependency>
+@@ -153,7 +153,7 @@
+ 
+     <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
+     <build>
+-        <finalName>paper-${minecraft.version}</finalName>
++        <finalName>alr-${minecraft.version}</finalName>
+         <defaultGoal>clean install</defaultGoal> <!-- Paper -->
+         <plugins>
+             <plugin>
+@@ -161,7 +161,7 @@
+                 <artifactId>gitdescribe-maven-plugin</artifactId>
+                 <version>1.3</version>
+                 <configuration>
+-                    <outputPrefix>git-Paper-</outputPrefix>
++                    <outputPrefix>git-Alr-</outputPrefix>
+                     <scmDirectory>..</scmDirectory>
+                 </configuration>
+                 <executions>
+diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+index 116d1b3bfb899c382cb59174f05d17d84ddcdddd..7871ec22f59c426fa5c17f410e9788ae0e801a8b 100644
+--- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
++++ b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+@@ -17,7 +17,7 @@ public final class PaperConsole extends SimpleTerminalConsole {
+     @Override
+     protected LineReader buildReader(LineReaderBuilder builder) {
+         return super.buildReader(builder
+-                .appName("Paper")
++                .appName("Alr")
+                 .completer(new ConsoleCommandCompleter(this.server))
+         );
+     }
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 4345359ad..61f32fd5e 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -1160,7 +1160,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
+     }
+ 
+     public String getServerModName() {
+-        return "Paper"; //Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return "Alr"; // Alr - Alr > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public CrashReport b(CrashReport crashreport) {
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index c555cadc3..a96a89e7d 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -140,7 +140,7 @@ import javax.annotation.Nonnull; // Paper
+ 
+ 
+ public final class CraftServer implements Server {
+-    private final String serverName = "Paper";
++    private final String serverName = "Alr";
+     private final String serverVersion;
+     private final String bukkitVersion = Versioning.getBukkitVersion();
+     private final Logger logger = Logger.getLogger("Minecraft");
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+index 674096cab..0e5c337b0 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+@@ -11,7 +11,7 @@ public final class Versioning {
+     public static String getBukkitVersion() {
+         String result = "Unknown-Version";
+ 
+-        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/com.destroystokyo.paper/paper-api/pom.properties");
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/com.adallei.alr/alr-api/pom.properties"); // Alr
+         Properties properties = new Properties();
+ 
+         if (stream != null) {
+diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
+index 93dc6983595ace9fa0d024ffbb11e4b98b5fe886..095654f8dcae7861d80f451de56e20a1f5818612 100644
+--- a/src/main/java/org/spigotmc/WatchdogThread.java
++++ b/src/main/java/org/spigotmc/WatchdogThread.java
+@@ -73,9 +73,7 @@ public class WatchdogThread extends Thread
+                 if ( isLongTimeout )
+                 {
+                 log.log( Level.SEVERE, "The server has stopped responding!" );
+-                log.log( Level.SEVERE, "Please report this to https://github.com/PaperMC/Paper/issues" );
+-                log.log( Level.SEVERE, "Be sure to include ALL relevant console errors and Minecraft crash reports" );
+-                log.log( Level.SEVERE, "Paper version: " + Bukkit.getServer().getVersion() );
++                log.log( Level.SEVERE, "Alr version: " + Bukkit.getServer().getVersion() );
+                 //
+                 if(net.minecraft.server.World.haveWeSilencedAPhysicsCrash)
+                 {
+@@ -103,7 +101,7 @@ public class WatchdogThread extends Thread
+                 }
+                 // Paper end - Different message for short timeout
+                 log.log( Level.SEVERE, "------------------------------" );
+-                log.log( Level.SEVERE, "Server thread dump (Look for plugins here before reporting to Paper!):" );
++                log.log( Level.SEVERE, "Server thread dump:" );
+                 dumpThread( ManagementFactory.getThreadMXBean().getThreadInfo( MinecraftServer.getServer().primaryThread.getId(), Integer.MAX_VALUE ), log );
+                 log.log( Level.SEVERE, "------------------------------" );
+                 //
+-- 
+2.50.1.windows.1
+

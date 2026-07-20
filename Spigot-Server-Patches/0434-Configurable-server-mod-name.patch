@@ -1,0 +1,47 @@
+From c3fc69b7dc9aaea6eca7e090127014651f8e045c Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 11 Jun 2026 16:53:32 +0800
+Subject: [PATCH] Configurable-server-mod-name
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index 649e0969c..09df059fe 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -259,6 +259,12 @@ public class PaperConfig {
+         noPermissionMessage = ChatColor.translateAlternateColorCodes('&', getString("messages.no-permission", noPermissionMessage));
+     }
+     
++    //Alr - Configurable server mod name
++    public static String serverModName = "Alr";
++    private static void serverModName() {
++        serverModName = getString("settings.server-mod-name", serverModName);
++    }
++
+     public static int playerAutoSaveRate = -1;
+     public static int maxPlayerAutoSavePerTick = 10;
+     private static void playerAutoSaveRate() {
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 61f32fd5e..9d1bf38db 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -49,6 +49,7 @@ import org.bukkit.craftbukkit.Main;
+ // CraftBukkit end
+ import org.spigotmc.SlackActivityAccountant; // Spigot
+ import co.aikar.timings.MinecraftTimings; // Paper
++import com.destroystokyo.paper.PaperConfig; //Paper
+ 
+ public abstract class MinecraftServer implements ICommandListener, Runnable, IAsyncTaskHandler, IMojangStatistics {
+ 
+@@ -1160,7 +1161,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
+     }
+ 
+     public String getServerModName() {
+-        return "Alr"; // Alr - Alr > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return com.destroystokyo.paper.PaperConfig.serverModName; // Alr - Alr > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public CrashReport b(CrashReport crashreport) {
+-- 
+2.50.1.windows.1
+

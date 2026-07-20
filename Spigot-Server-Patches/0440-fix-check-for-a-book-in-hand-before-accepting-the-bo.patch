@@ -1,0 +1,71 @@
+From f0626dfe7ad7ec46d0537d4eb5c79df66899c14a Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 13 Jun 2026 16:26:04 +0800
+Subject: [PATCH] fix-check-for-a-book-in-hand-before-accepting-the-bo
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 7d34116ff..41c7c1b38 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -2455,6 +2455,12 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+             packetdataserializer = packetplayincustompayload.b();
+ 
+             try {
++                // Alr start
++                itemstack1 = this.player.getItemInMainHand();
++                if (itemstack1.isEmpty() || itemstack1.getItem() != Items.WRITABLE_BOOK) {
++                    return;
++                }
++                // Alr end
+                 itemstack = packetdataserializer.k();
+                 if (itemstack.isEmpty()) {
+                     return;
+@@ -2464,12 +2470,14 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                     throw new IOException("Invalid book tag!");
+                 }
+ 
++                /*// Alr start
+                 itemstack1 = this.player.getItemInMainHand();
+                 if (itemstack1.isEmpty()) {
+                     return;
+                 }
++                */ // Alr end
+ 
+-                if (itemstack.getItem() == Items.WRITABLE_BOOK && itemstack.getItem() == itemstack1.getItem()) {
++                if (itemstack.getItem() == Items.WRITABLE_BOOK /*&& itemstack.getItem() == itemstack1.getItem()*/) { // Alr
+                     if (!validateBook(itemstack, true)) return; // Paper
+                     itemstack1.a("pages", (NBTBase) itemstack.getTag().getList("pages", 8));
+                     CraftEventFactory.handleEditBookEvent(player, itemstack1); // CraftBukkit
+@@ -2491,6 +2499,12 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 packetdataserializer = packetplayincustompayload.b();
+ 
+                 try {
++                    // Alr start
++                    itemstack1 = this.player.getItemInMainHand();
++                    if (itemstack1.isEmpty() || itemstack1.getItem() != Items.WRITABLE_BOOK) {
++                        return;
++                    }
++                    // Alr end
+                     itemstack = packetdataserializer.k();
+                     if (itemstack.isEmpty()) {
+                         return;
+@@ -2500,12 +2514,14 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                         throw new IOException("Invalid book tag!");
+                     }
+ 
++                    /* // Alr start
+                     itemstack1 = this.player.getItemInMainHand();
+                     if (itemstack1.isEmpty()) {
+                         return;
+                     }
++                    */ // Alr end
+ 
+-                    if (itemstack.getItem() == Items.WRITABLE_BOOK && itemstack1.getItem() == Items.WRITABLE_BOOK) {
++                    if (itemstack.getItem() == Items.WRITABLE_BOOK /*&& itemstack1.getItem() == Items.WRITABLE_BOOK*/) { // Alr
+                         if (!validateBook(itemstack, true)) return; // Paper
+                         ItemStack itemstack2 = new ItemStack(Items.WRITTEN_BOOK);
+ 
+-- 
+2.50.1.windows.1
+

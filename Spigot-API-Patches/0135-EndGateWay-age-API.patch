@@ -1,0 +1,38 @@
+From 249cd863ff1ca7c19d279fe29430f8262d25ff3a Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 16 Jul 2026 16:15:32 +0800
+Subject: [PATCH] EndGateWay-age-API
+
+
+diff --git a/src/main/java/org/bukkit/block/EndGateway.java b/src/main/java/org/bukkit/block/EndGateway.java
+index a1a6b3b0..bcf96a0d 100644
+--- a/src/main/java/org/bukkit/block/EndGateway.java
++++ b/src/main/java/org/bukkit/block/EndGateway.java
+@@ -43,4 +43,24 @@ public interface EndGateway extends BlockState {
+      * @param exact whether to teleport to the exact location
+      */
+     void setExactTeleport(boolean exact);
++
++        /**
++     * Gets the age in ticks of the gateway.
++     * <br>
++     * If the age is less than 200 ticks a magenta beam will be emitted, whilst
++     * if it is a multiple of 2400 ticks a purple beam will be emitted.
++     *
++     * @return age in ticks
++     */
++    long getAge();
++
++    /**
++     * Sets the age in ticks of the gateway.
++     * <br>
++     * If the age is less than 200 ticks a magenta beam will be emitted, whilst
++     * if it is a multiple of 2400 ticks a purple beam will be emitted.
++     *
++     * @param age new age in ticks
++     */
++    void setAge(long age);
+ }
+-- 
+2.50.1.windows.1
+

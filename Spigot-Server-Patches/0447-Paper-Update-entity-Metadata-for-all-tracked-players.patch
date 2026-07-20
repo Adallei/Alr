@@ -1,0 +1,22 @@
+From eb482897ccf498ffe5dd52c1c3ff58440e386476 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Tue, 16 Jun 2026 02:05:36 +0800
+Subject: [PATCH] Paper-Update-entity-Metadata-for-all-tracked-players
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index be23439bf..97a047e7b 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -1720,7 +1720,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+ 
+                     if (triggerLeashUpdate && (event.isCancelled() || this.player.inventory.getItemInHand() == null || this.player.inventory.getItemInHand().getItem() != Items.LEAD)) {
+                         // Refresh the current leash state
+-                        this.sendPacket(new PacketPlayOutAttachEntity(entity, ((EntityInsentient) entity).getLeashHolder()));
++                        entity.tracker.broadcast(new PacketPlayOutEntityMetadata(entity.getId(), entity.datawatcher, true)); // Paper - update entity for all players
+                     }
+ 
+                     if (event.isCancelled() || this.player.inventory.getItemInHand() == null || this.player.inventory.getItemInHand().getItem() != origItem) {
+-- 
+2.50.1.windows.1
+

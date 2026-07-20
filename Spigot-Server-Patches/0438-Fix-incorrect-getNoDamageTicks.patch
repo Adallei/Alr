@@ -1,0 +1,30 @@
+From 5332a013f1c6ea0cbf3d7cebce3dc07fa70009ed Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 13 Jun 2026 15:41:24 +0800
+Subject: [PATCH] Fix-incorrect-getNoDamageTicks
+
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+index d59d86efc..4e01a21d0 100644
+--- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
++++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
+@@ -1478,11 +1478,16 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+ 
+     @Override
+     public int getNoDamageTicks() {
++        // Alr fix incorrect calculation of getNoDamageTicks
++        /*
+         if (getHandle().invulnerableTicks > 0) {
+             return Math.max(getHandle().invulnerableTicks, getHandle().noDamageTicks);
+         } else {
+             return getHandle().noDamageTicks;
+         }
++        */
++       return Math.max(getHandle().invulnerableTicks, Math.max(0, getHandle().noDamageTicks - getHandle().maxNoDamageTicks / 2));
++       // Alr end
+     }
+ 
+     @Override
+-- 
+2.50.1.windows.1
+

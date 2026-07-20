@@ -1,0 +1,22 @@
+From e9f75f98be018ba8caf5e0ae25e90b917d2f806b Mon Sep 17 00:00:00 2001
+From: Softik Lord <dimap9986@gmail.com>
+Date: Sun, 17 Jul 2022 14:11:01 +0500
+Subject: [PATCH] Paper-Backport-Dont-resent-entity-on-art-update
+
+
+diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPainting.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPainting.java
+index 3e9448a92..7b1926e74 100644
+--- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPainting.java
++++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPainting.java
+@@ -38,7 +38,7 @@ public class CraftPainting extends CraftHanging implements Painting {
+             painting.setDirection(painting.direction);
+             return false;
+         }
+-        this.update();
++        //this.update(); Paper - Don't resent entity on art update
+         return true;
+     }
+ 
+-- 
+2.50.1.windows.1
+

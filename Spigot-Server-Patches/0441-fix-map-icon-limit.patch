@@ -1,0 +1,43 @@
+From b3157cefcafbbcd2739ede6de6ca2337d26d4bcd Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 13 Jun 2026 17:20:06 +0800
+Subject: [PATCH] fix-map-icon-limit
+
+
+diff --git a/src/main/java/net/minecraft/server/WorldMap.java b/src/main/java/net/minecraft/server/WorldMap.java
+index 59173605e..812d5ca77 100644
+--- a/src/main/java/net/minecraft/server/WorldMap.java
++++ b/src/main/java/net/minecraft/server/WorldMap.java
+@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
+ 
+ // CraftBukkit start
+ import java.util.UUID;
++import java.util.concurrent.atomic.AtomicInteger; // Alr map icon limit
+ 
+ import org.bukkit.craftbukkit.CraftServer;
+ import org.bukkit.craftbukkit.CraftWorld;
+@@ -321,7 +322,10 @@ public class WorldMap extends PersistentBase {
+         // Paper start
+         private void addSeenPlayers(java.util.Collection<MapIcon> icons) {
+             org.bukkit.entity.Player player = (org.bukkit.entity.Player) trackee.getBukkitEntity();
++            AtomicInteger counter = new AtomicInteger(); // Alr map icon limit
+             WorldMap.this.decorations.forEach((uuid, mapIcon) -> {
++                counter.getAndIncrement(); // Alr map icon limit
++                if (counter.get() > 64) return; // Alr map icon limit
+                 // If this cursor is for a player check visibility with vanish system
+                 org.bukkit.entity.Player other = org.bukkit.Bukkit.getPlayer(uuid); // Spigot
+                 if (other == null || player.canSee(other)) {
+@@ -356,8 +360,10 @@ public class WorldMap extends PersistentBase {
+             java.util.Collection<MapIcon> icons = new java.util.ArrayList<MapIcon>();
+             if (vanillaMaps) addSeenPlayers(icons); // Paper
+ 
++            int counter = 0; // Alr map icon limit
+             for ( org.bukkit.map.MapCursor cursor : render.cursors) {
+ 
++                if (++counter > 64) break; // Alr map icon limit
+                 if (cursor.isVisible()) {
+                     icons.add(new MapIcon(MapIcon.Type.a(cursor.getRawType()), cursor.getX(), cursor.getY(), cursor.getDirection()));
+                 }
+-- 
+2.50.1.windows.1
+

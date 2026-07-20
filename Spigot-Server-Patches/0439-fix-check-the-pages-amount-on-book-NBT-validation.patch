@@ -1,0 +1,52 @@
+From 2397c619950716e875d885cc0cab1f91eb68eb60 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 13 Jun 2026 16:10:50 +0800
+Subject: [PATCH] fix-check-the-pages-amount-on-book-NBT-validation
+
+
+diff --git a/src/main/java/net/minecraft/server/ItemBookAndQuill.java b/src/main/java/net/minecraft/server/ItemBookAndQuill.java
+new file mode 100644
+index 000000000..fbeb4d9db
+--- /dev/null
++++ b/src/main/java/net/minecraft/server/ItemBookAndQuill.java
+@@ -0,0 +1,37 @@
++package net.minecraft.server;
++
++public class ItemBookAndQuill extends Item {
++
++    public ItemBookAndQuill() {
++        this.d(1);
++    }
++
++    public InteractionResultWrapper<ItemStack> a(World world, EntityHuman entityhuman, EnumHand enumhand) {
++        ItemStack itemstack = entityhuman.b(enumhand);
++
++        entityhuman.a(itemstack, enumhand);
++        entityhuman.b(StatisticList.b((Item) this));
++        return new InteractionResultWrapper(EnumInteractionResult.SUCCESS, itemstack);
++    }
++
++    public static boolean b(NBTTagCompound nbttagcompound) {
++        if (nbttagcompound == null) {
++            return false;
++        } else if (!nbttagcompound.hasKeyOfType("pages", 9)) {
++            return false;
++        } else {
++            NBTTagList nbttaglist = nbttagcompound.getList("pages", 8);
++            if (nbttaglist.size() > 50) return false; // Alr
++
++            for (int i = 0; i < nbttaglist.size(); ++i) {
++                String s = nbttaglist.getString(i);
++
++                if (s.length() > 32767) {
++                    return false;
++                }
++            }
++
++            return true;
++        }
++    }
++}
+-- 
+2.50.1.windows.1
+

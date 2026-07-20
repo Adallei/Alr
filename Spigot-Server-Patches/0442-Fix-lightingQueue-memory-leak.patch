@@ -1,0 +1,57 @@
+From 81630f6894b5e85f6f65928fce726469b990d639 Mon Sep 17 00:00:00 2001
+From: Toshimichi0915 <main@toshimichi.net>
+Date: Sat, 6 Aug 2022 23:38:03 +0900
+Subject: [PATCH] Fix lightingQueue memory leak
+
+
+diff --git a/src/main/java/net/minecraft/server/Chunk.java b/src/main/java/net/minecraft/server/Chunk.java
+index 4060fd274..530841723 100644
+--- a/src/main/java/net/minecraft/server/Chunk.java
++++ b/src/main/java/net/minecraft/server/Chunk.java
+@@ -1535,6 +1535,9 @@ public class Chunk {
+     // Paper start
+     public void runOrQueueLightUpdate(Runnable runnable) {
+         if (this.world.paperConfig.queueLightUpdates) {
++            if (lightingQueue.size() > 32 && lightingQueue.lastFailed) {
++                lightingQueue.clear();
++            }
+             lightingQueue.add(runnable);
+         } else {
+             runnable.run();
+diff --git a/src/main/java/net/minecraft/server/PaperLightingQueue.java b/src/main/java/net/minecraft/server/PaperLightingQueue.java
+index f1c013116..9aeac0830 100644
+--- a/src/main/java/net/minecraft/server/PaperLightingQueue.java
++++ b/src/main/java/net/minecraft/server/PaperLightingQueue.java
+@@ -33,6 +33,7 @@ class PaperLightingQueue {
+ 
+     static class LightingQueue extends ArrayDeque<Runnable> {
+         final private Chunk chunk;
++        boolean lastFailed;
+ 
+         LightingQueue(Chunk chunk) {
+             super();
+@@ -51,6 +52,7 @@ class PaperLightingQueue {
+                 return false;
+             }
+             if (isOutOfTime(maxTickTime, startTime)) {
++                lastFailed = true;
+                 return true;
+             }
+             try (Timing ignored = chunk.world.timings.lightingQueueTimer.startTiming()) {
+@@ -58,11 +60,13 @@ class PaperLightingQueue {
+                 while ((lightUpdate = this.poll()) != null) {
+                     lightUpdate.run();
+                     if (isOutOfTime(maxTickTime, startTime)) {
++                        lastFailed = true;
+                         return true;
+                     }
+                 }
+             }
+ 
++            lastFailed = false;
+             return false;
+         }
+ 
+-- 
+2.50.1.windows.1
+

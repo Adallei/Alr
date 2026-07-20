@@ -1,0 +1,44 @@
+From 08b384dcd2b4ae8f26bdf908ae358e29619c35ee Mon Sep 17 00:00:00 2001
+From: AlexProgrammerDE <40795980+AlexProgrammerDE@users.noreply.github.com>
+Date: Sun, 19 Jun 2022 14:41:36 +0200
+Subject: [PATCH] Better checking for useless move packets
+
+Pufferfish
+Copyright (C) 2022 Pufferfish Studios LLC
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+diff --git a/src/main/java/net/minecraft/server/EntityTrackerEntry.java b/src/main/java/net/minecraft/server/EntityTrackerEntry.java
+index 60159ee2f..2a427ef50 100644
+--- a/src/main/java/net/minecraft/server/EntityTrackerEntry.java
++++ b/src/main/java/net/minecraft/server/EntityTrackerEntry.java
+@@ -163,6 +163,7 @@ public class EntityTrackerEntry {
+                 // CraftBukkit end
+ 
+                     if (l1 >= -32768L && l1 < 32768L && i2 >= -32768L && i2 < 32768L && j2 >= -32768L && j2 < 32768L && this.v <= 400 && !this.x && this.y == this.tracker.onGround) {
++                        if (flag1 || flag2 || this.tracker instanceof EntityArrow) { // Dionysus
+                         if ((!flag1 || !flag2) && !(this.tracker instanceof EntityArrow)) {
+                             if (flag1) {
+                                 object = new PacketPlayOutEntity.PacketPlayOutRelEntityMove(this.tracker.getId(), l1, i2, j2, this.tracker.onGround);
+@@ -172,6 +173,7 @@ public class EntityTrackerEntry {
+                         } else {
+                             object = new PacketPlayOutEntity.PacketPlayOutRelEntityMoveLook(this.tracker.getId(), l1, i2, j2, (byte) j1, (byte) k1, this.tracker.onGround);
+                         }
++                        } // Dionysus
+                     } else {
+                         this.y = this.tracker.onGround;
+                         this.v = 0;
+-- 
+2.50.1.windows.1
+

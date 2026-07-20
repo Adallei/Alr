@@ -1,0 +1,25 @@
+From d303631c1259b62e325d364b004136a60a8b1b02 Mon Sep 17 00:00:00 2001
+From: Softik Lord <dimap9986@gmail.com>
+Date: Mon, 18 Jul 2022 12:40:41 +0500
+Subject: [PATCH] Paper-Prevent-position-desync-in-playerconnection-causing
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 3dc18055e..af6e5a3d7 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -645,6 +645,11 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                             }
+ 
+                             this.player.move(EnumMoveType.PLAYER, d7, d8, d9);
++                            // Paper start - prevent position desync
++                            if (this.teleportPos != null) {
++                                return; // ... thanks Mojang for letting move calls teleport across dimensions.
++                            }
++                            // Paper end - prevent position desync
+                             this.player.onGround = packetplayinflying.a();
+                             double d12 = d8;
+ 
+-- 
+2.50.1.windows.1
+

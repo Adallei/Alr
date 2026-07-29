@@ -1,4 +1,4 @@
-From 8e051d610f1a06680c784244adc6efd1ae433f0d Mon Sep 17 00:00:00 2001
+From 698ace733046e2628f602e5b44792586aec69a72 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 3 Jul 2018 21:52:52 -0400
 Subject: [PATCH] InventoryCloseEvent Reason API

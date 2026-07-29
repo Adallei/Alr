@@ -1,4 +1,4 @@
-From 79e4b1a3344978ed5652d95a4d73637d5a567491 Mon Sep 17 00:00:00 2001
+From e62f98fe04cea7221f55e186d3745da79c815ab1 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Mon, 18 Dec 2017 07:26:56 +0000
 Subject: [PATCH] Don't blindly send unlit chunks when lighting updates are

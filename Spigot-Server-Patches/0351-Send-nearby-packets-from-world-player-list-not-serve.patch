@@ -1,4 +1,4 @@
-From c3502e030da51b4f247d61c1841d0d358cf67f04 Mon Sep 17 00:00:00 2001
+From 5f79b451b77c4506e60b65136b3400568f626bb6 Mon Sep 17 00:00:00 2001
 From: Mystiflow <mystiflow@gmail.com>
 Date: Fri, 6 Jul 2018 13:21:30 +0100
 Subject: [PATCH] Send nearby packets from world player list not server list

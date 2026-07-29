@@ -1,4 +1,4 @@
-From e74a9d35bdbbe54acf533c78708375ebd29ab487 Mon Sep 17 00:00:00 2001
+From 68d9fd0df9deaa52c91059311bd7c14cc616b50f Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 28 Jul 2018 12:18:27 -0400
 Subject: [PATCH] Ignore Dead Entities in entityList iteration

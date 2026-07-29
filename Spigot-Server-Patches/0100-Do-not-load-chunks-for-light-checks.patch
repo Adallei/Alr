@@ -1,4 +1,4 @@
-From 69a5090f4026e217fbcdd2fe46b8c1445e532177 Mon Sep 17 00:00:00 2001
+From cf1036e87fd1630f2b19743f5c8b811b52db9f1c Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 31 Mar 2016 19:17:58 -0400
 Subject: [PATCH] Do not load chunks for light checks

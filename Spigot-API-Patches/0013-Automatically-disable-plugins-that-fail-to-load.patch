@@ -1,4 +1,4 @@
-From 13e08d8722976dd9564502ead0578392a7903125 Mon Sep 17 00:00:00 2001
+From f176c1cf5e9d4a38dba42e619c4a8c9d8da6ca78 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 29 Feb 2016 19:45:21 -0600
 Subject: [PATCH] Automatically disable plugins that fail to load

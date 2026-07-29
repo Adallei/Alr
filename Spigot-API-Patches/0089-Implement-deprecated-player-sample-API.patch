@@ -1,4 +1,4 @@
-From e0f73d8a09e1d76eaa676669d99f2f085068c6ff Mon Sep 17 00:00:00 2001
+From 4ce93892606b8fc6601561b5d9d7420a154ea9a7 Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Mon, 27 Nov 2017 16:21:19 +0100
 Subject: [PATCH] Implement deprecated player sample API

@@ -1,4 +1,4 @@
-From cec6ac44eb00642d3817b77cf7fd6de2f8d4cf23 Mon Sep 17 00:00:00 2001
+From 148c999722aec89fd1c3b7557c72c617d2ad6ef7 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Tue, 1 Mar 2016 23:12:03 -0600
 Subject: [PATCH] Only refresh abilities if needed

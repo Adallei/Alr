@@ -1,4 +1,4 @@
-From c1f40191ad42cba864a4045858576b2c902170ba Mon Sep 17 00:00:00 2001
+From cf7c0c7689a15db2a87600088dc3ae64f847cdee Mon Sep 17 00:00:00 2001
 From: ruViolence <78062896+ruViolence@users.noreply.github.com>
 Date: Thu, 16 Feb 2023 12:22:11 +0500
 Subject: [PATCH] fix: broken portal creation
@@ -6,7 +6,7 @@ Subject: [PATCH] fix: broken portal creation
 Fixes bug when the nether portal is created over the sea without PORTAL blocks.
 
 diff --git a/src/main/java/net/minecraft/server/PortalTravelAgent.java b/src/main/java/net/minecraft/server/PortalTravelAgent.java
-index 42e4b2d01..5e3d49e7b 100644
+index 42e4b2d01..2d4b62b9c 100644
 --- a/src/main/java/net/minecraft/server/PortalTravelAgent.java
 +++ b/src/main/java/net/minecraft/server/PortalTravelAgent.java
 @@ -441,8 +441,12 @@ public class PortalTravelAgent {
@@ -14,12 +14,12 @@ index 42e4b2d01..5e3d49e7b 100644
                          // Paper start
                          BlockPosition pos = new BlockPosition(j3, k3, l3);
 -                        nmsBlocks.putIfAbsent(pos, flag1 ? Blocks.OBSIDIAN.getBlockData() : Blocks.AIR.getBlockData());
-+                        // Reaper start - Fix broken portal creation
++                        // Alr start - Fix broken portal creation
 +                        if (flag1) {
 +                        nmsBlocks.putIfAbsent(pos, Blocks.OBSIDIAN.getBlockData());
                          bukkitBlocks.add(this.world.getWorld().getBlockAt(pos.getX(), pos.getY(), pos.getZ()));
 +                        }
-+                        // Reaper end - Fix broken portal creation
++                        // Alr end - Fix broken portal creation
                          // Paper end
                      }
                  }

@@ -1,4 +1,4 @@
-From 6c5b89c78e314b6db385a31b43698ef3301c42f2 Mon Sep 17 00:00:00 2001
+From 3d2f60e3e546cc601a5643211daa38486162b9dc Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Wed, 11 Oct 2017 19:30:51 +0200
 Subject: [PATCH] Call PaperServerListPingEvent for legacy pings

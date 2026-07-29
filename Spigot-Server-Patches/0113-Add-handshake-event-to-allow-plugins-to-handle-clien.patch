@@ -1,4 +1,4 @@
-From ef0f53e283214e72ae544c216694382d74691b92 Mon Sep 17 00:00:00 2001
+From f5d5eeeea3a0d7b0d13b1636179c3c4811547861 Mon Sep 17 00:00:00 2001
 From: kashike <kashike@vq.lc>
 Date: Wed, 13 Apr 2016 20:21:38 -0700
 Subject: [PATCH] Add handshake event to allow plugins to handle client

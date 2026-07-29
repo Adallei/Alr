@@ -1,4 +1,4 @@
-From b17e7a3f6d912d7050aedc677ae2d44d00761ed0 Mon Sep 17 00:00:00 2001
+From 9edeac0b62699c5308132a3436fcb21cab9ad985 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Tue, 20 Dec 2016 23:09:21 -0600
 Subject: [PATCH] Add option to remove invalid statistics

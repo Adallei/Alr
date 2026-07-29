@@ -1,4 +1,4 @@
-From 562b7d62484ecc548dccdaa35a42f4f3efe0c72b Mon Sep 17 00:00:00 2001
+From 38408a578898f496881958b08035bf2e985875ec Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 19 Jul 2018 01:13:28 -0400
 Subject: [PATCH] add more information to Entity.toString()

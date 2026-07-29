@@ -1,18 +1,17 @@
-From 75b5a02aeb1363cfc6412a0bceb58fb0631b2359 Mon Sep 17 00:00:00 2001
+From 1c80ccfde2dce99d8337883e0ef948e33c70d028 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 17 Nov 2018 00:08:54 -0500
 Subject: [PATCH] Limit Book Sizes
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
-index ed050fbfa..3d6e09907 100644
+index ed050fbfa..91e1b2463 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
-@@ -314,4 +314,18 @@ public class PaperConfig {
+@@ -314,4 +314,17 @@ public class PaperConfig {
          tabSpamIncrement = getInt("settings.spam-limiter.tab-spam-increment", tabSpamIncrement);
          tabSpamLimit = getInt("settings.spam-limiter.tab-spam-limit", tabSpamLimit);
      }
-+
 +
 +    public static int maxBookPageSize = 2560;
 +    public static double maxBookTotalSizeMultiplier = 0.98D;

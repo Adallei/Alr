@@ -1,4 +1,4 @@
-From 48f355b5f6823a95049fafb259010066aa3e8362 Mon Sep 17 00:00:00 2001
+From a6c402d6b6c33a225348021fe99c35eaa6c6caa9 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 10 Jun 2018 20:20:15 -0400
 Subject: [PATCH] Fix CraftEntity hashCode

@@ -1,4 +1,4 @@
-From f31a5e8da5641fbf2ecf8333886a1f7daa25d604 Mon Sep 17 00:00:00 2001
+From dec9e79ddf63c45745dc66ac6328cf02f4d40b22 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 19 Jan 2018 00:36:25 -0500
 Subject: [PATCH] Add SkullMeta.setPlayerProfile API

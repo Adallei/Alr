@@ -1,4 +1,4 @@
-From c5d24484451d840c7a1d1b9ad9795d18b5d30957 Mon Sep 17 00:00:00 2001
+From 418813e5e0756debb3de17c24365942faa46d1be Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 1 Jul 2018 22:06:29 -0400
 Subject: [PATCH] Add SentientNPC Interface to Entities

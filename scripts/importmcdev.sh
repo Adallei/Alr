@@ -125,6 +125,9 @@ import WorldGenStronghold
 import WorldProvider
 import BlockCarpet
 import BlockMinecartTrackAbstract
+import PacketPlayInTabComplete
+import WorldGenBigTree
+import ItemBookAndQuill
 
 cd "$workdir/Spigot/Spigot-Server/"
 rm -rf nms-patches applyPatches.sh makePatches.sh >/dev/null 2>&1

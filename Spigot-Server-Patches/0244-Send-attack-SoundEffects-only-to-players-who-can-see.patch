@@ -1,4 +1,4 @@
-From 6b08887a66972b41cdffe5897e0db232cf45bf47 Mon Sep 17 00:00:00 2001
+From 6da9ce80fc9d8d0f0836811b0f014255d7cb2383 Mon Sep 17 00:00:00 2001
 From: Brokkonaut <hannos17@gmx.de>
 Date: Tue, 31 Oct 2017 03:26:18 +0100
 Subject: [PATCH] Send attack SoundEffects only to players who can see the

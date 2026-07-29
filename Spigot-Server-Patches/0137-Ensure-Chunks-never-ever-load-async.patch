@@ -1,4 +1,4 @@
-From a706b7e1686bf108cd9628df57e7cee13a910c88 Mon Sep 17 00:00:00 2001
+From c1ce4c082ae1a1ffcb27751a6285d9647fb247a4 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 27 May 2016 21:41:26 -0400
 Subject: [PATCH] Ensure Chunks never ever load async

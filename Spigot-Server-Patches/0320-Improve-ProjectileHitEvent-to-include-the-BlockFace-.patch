@@ -1,4 +1,4 @@
-From b2564491610579450b4efe64cd1d0068c942627f Mon Sep 17 00:00:00 2001
+From e37a44f4c08f44a180735e2c99d0ae6cedb4fb3d Mon Sep 17 00:00:00 2001
 From: Brokkonaut <hannos17@gmx.de>
 Date: Sat, 30 Jun 2018 05:45:39 +0200
 Subject: [PATCH] Improve ProjectileHitEvent to include the BlockFace where the

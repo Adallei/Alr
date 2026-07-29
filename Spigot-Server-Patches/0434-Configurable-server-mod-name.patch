@@ -1,11 +1,11 @@
-From c3fc69b7dc9aaea6eca7e090127014651f8e045c Mon Sep 17 00:00:00 2001
+From 36481cfb9a33e4dca1e94a168d3a6454b76e45e6 Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Thu, 11 Jun 2026 16:53:32 +0800
 Subject: [PATCH] Configurable-server-mod-name
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
-index 649e0969c..09df059fe 100644
+index 17bf0ffa4..61d45ebb5 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
 @@ -259,6 +259,12 @@ public class PaperConfig {
@@ -22,7 +22,7 @@ index 649e0969c..09df059fe 100644
      public static int maxPlayerAutoSavePerTick = 10;
      private static void playerAutoSaveRate() {
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 61f32fd5e..9d1bf38db 100644
+index 963b0f215..9c454f0ed 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -49,6 +49,7 @@ import org.bukkit.craftbukkit.Main;

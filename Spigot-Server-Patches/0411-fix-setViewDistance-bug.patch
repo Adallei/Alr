@@ -1,4 +1,4 @@
-From e2b2097f51cc55bb83ee72ceea605cbb54c7a24a Mon Sep 17 00:00:00 2001
+From 7ab75ca7c40f34f2514f6a8dc6ce889eb102c2fa Mon Sep 17 00:00:00 2001
 From: ruViolence <78062896+ruViolence@users.noreply.github.com>
 Date: Thu, 26 May 2022 07:22:18 +0500
 Subject: [PATCH] fix: setViewDistance bug
@@ -7,7 +7,7 @@ Fixes the bug of the player getting stuck in the PlayerChunk viewers when the pl
 Memory leak when reducing the view distance.
 
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index 99652ae3e..91dbc6483 100644
+index 99652ae3e..9866b7d41 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -430,8 +430,10 @@ public class PlayerChunkMap {
@@ -16,10 +16,10 @@ index 99652ae3e..91dbc6483 100644
              
 -            int k = (int) entityplayer.locX >> 4;
 -            int l = (int) entityplayer.locZ >> 4;
-+            // Reaper start - Calculate by last managedPos, not by current location, fixes getting stuck in the PlayerChunk viewers list
++            // Alr start - Calculate by last managedPos, not by current location, fixes getting stuck in the PlayerChunk viewers list
 +            int k = (int) entityplayer.d >> 4;
 +            int l = (int) entityplayer.e >> 4;
-+            // Reaper end
++            // Alr end
              int i1;
              int j1;
  
@@ -28,7 +28,7 @@ index 99652ae3e..91dbc6483 100644
                      for (j1 = l - oldViewDistance; j1 <= l + oldViewDistance; ++j1) {
                          if (!this.a(i1, j1, k, l, i)) {
 -                            this.c(i1, j1).b(entityplayer);
-+                            PlayerChunk chunk = this.getChunk(i1, j1); if (chunk != null) chunk.b(entityplayer); // Reaper - Fix memory leak
++                            PlayerChunk chunk = this.getChunk(i1, j1); if (chunk != null) chunk.b(entityplayer); // Alr - Fix memory leak
                          }
                      }
                  }

@@ -1,4 +1,4 @@
-From 02d5eb9b494870df29dd996be4dd295e2380593d Mon Sep 17 00:00:00 2001
+From 92e2a199e39bbf9cb3e5b5cc6e97925bc288dabf Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Sun, 10 Apr 2016 03:23:32 -0500
 Subject: [PATCH] Workaround for setting passengers on players

@@ -1,11 +1,11 @@
-From 4d8cc565359b525b21507d627c5ffdddccfa3bc5 Mon Sep 17 00:00:00 2001
+From 1210d9fb7a575e56de743f4cbd21b037924f2a87 Mon Sep 17 00:00:00 2001
 From: ruViolence <78062896+ruViolence@users.noreply.github.com>
 Date: Tue, 18 Jul 2023 23:56:41 +0800
 Subject: [PATCH] perf: optimize held items swapping
 
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index c59bda959..1ab8b3603 100644
+index 8125a1a5c..4e6169f6b 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -877,15 +877,34 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {

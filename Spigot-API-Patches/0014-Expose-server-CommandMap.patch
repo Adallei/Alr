@@ -1,4 +1,4 @@
-From 26915c4428cb2fbcce5e9bea37725198fac477ac Mon Sep 17 00:00:00 2001
+From 7cf0b3413799f374fb783c473b0a306131b40d43 Mon Sep 17 00:00:00 2001
 From: kashike <kashike@vq.lc>
 Date: Mon, 29 Feb 2016 19:48:59 -0600
 Subject: [PATCH] Expose server CommandMap

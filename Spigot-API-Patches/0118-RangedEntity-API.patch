@@ -1,4 +1,4 @@
-From 94e96b866bfb3b61433ae589d1909b6967c85076 Mon Sep 17 00:00:00 2001
+From ed2ac33eb0ac229fe05d5ab9a523f614274d8d91 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 26 Jun 2018 21:34:40 -0400
 Subject: [PATCH] RangedEntity API

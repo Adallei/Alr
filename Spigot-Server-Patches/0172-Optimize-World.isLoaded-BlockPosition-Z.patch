@@ -1,4 +1,4 @@
-From 6677669b895cd5f777128c5c1c0d43662185dfd7 Mon Sep 17 00:00:00 2001
+From e87ac6b826ca63004ea32d2e36a5e840563ba759 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 2 Dec 2016 00:11:43 -0500
 Subject: [PATCH] Optimize World.isLoaded(BlockPosition)Z

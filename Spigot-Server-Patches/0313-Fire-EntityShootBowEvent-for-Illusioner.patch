@@ -1,4 +1,4 @@
-From 0c15a4162c5f14924a7be0cd891e0eaf8f9535e0 Mon Sep 17 00:00:00 2001
+From 484e042eaf5e843fba96dbd64976d3d7c86ce191 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 18 Jun 2018 22:19:36 -0400
 Subject: [PATCH] Fire EntityShootBowEvent for Illusioner

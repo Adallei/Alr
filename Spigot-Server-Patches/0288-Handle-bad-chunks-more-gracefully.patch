@@ -1,4 +1,4 @@
-From d8312f846edac9db999ded7b86a1961b72b3c128 Mon Sep 17 00:00:00 2001
+From cb3b12ff2ad803d3967a70744d4fc0be447d0283 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Tue, 17 Apr 2018 21:26:31 -0400
 Subject: [PATCH] Handle bad chunks more gracefully

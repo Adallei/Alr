@@ -1,4 +1,4 @@
-From 4a4d9d646a96d4867d93812f03d274fa4c2ccd9a Mon Sep 17 00:00:00 2001
+From 60ffdf621eb3781391879d263e375871351f9e94 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sun, 14 Apr 2019 20:59:16 +0100
 Subject: [PATCH] Don't drop items into the world if BlockPlaceEvent is

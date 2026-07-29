@@ -1,4 +1,4 @@
-From 19242ac787bed7175d3c9481752630b4d3d91ecc Mon Sep 17 00:00:00 2001
+From c9b5f31757d987db847c978e116c4cf24ff8515e Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 25 Jul 2018 01:36:07 -0400
 Subject: [PATCH] Expand Location Manipulation API

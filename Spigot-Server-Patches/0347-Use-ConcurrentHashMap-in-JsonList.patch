@@ -1,4 +1,4 @@
-From 9790f5d9af979eec63df9bc5416599ed322fed66 Mon Sep 17 00:00:00 2001
+From 803a5232284580b7dda30d27fc056d5374b675f7 Mon Sep 17 00:00:00 2001
 From: egg82 <phantom_zero@ymail.com>
 Date: Tue, 7 Aug 2018 01:24:23 -0600
 Subject: [PATCH] Use ConcurrentHashMap in JsonList

@@ -1,4 +1,4 @@
-From 0e4da308c684ca58a3abb334ff5dba82e17d2a54 Mon Sep 17 00:00:00 2001
+From 015373f70a87907f9ebfd0b12adae8e190bea068 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 9 Sep 2018 00:32:05 -0400
 Subject: [PATCH] Remove deadlock risk in firing async events

@@ -1,4 +1,4 @@
-From 909183834067f5fc0fa8e19e63e93fd515fd97a7 Mon Sep 17 00:00:00 2001
+From 34f2afe722ae1697ee6cfa6576ca203ae260fa14 Mon Sep 17 00:00:00 2001
 From: BillyGalbreath <Blake.Galbreath@GMail.com>
 Date: Fri, 22 Jun 2018 10:38:31 -0500
 Subject: [PATCH] Add config to disable ender dragon legacy check

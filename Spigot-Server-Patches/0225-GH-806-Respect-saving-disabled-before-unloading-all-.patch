@@ -1,4 +1,4 @@
-From 92955d54bf026602b4df2de908dcf2039ff60c2c Mon Sep 17 00:00:00 2001
+From dec1367f6336de5c2efff0c75fc2df5db8089cd9 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 27 Jul 2017 00:06:43 -0400
 Subject: [PATCH] GH-806: Respect saving disabled before unloading all chunks

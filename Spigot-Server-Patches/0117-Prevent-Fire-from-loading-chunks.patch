@@ -1,4 +1,4 @@
-From f6ad72d98961ec22edd67e9734efa018a51eb9d4 Mon Sep 17 00:00:00 2001
+From 6c08c99842658b4e68b65ef49a14f00b5a7dc63d Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 17 Apr 2016 17:27:09 -0400
 Subject: [PATCH] Prevent Fire from loading chunks

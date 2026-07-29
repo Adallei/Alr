@@ -1,4 +1,4 @@
-From af471e25a3d2374e4e14b1b22803d477bae0324c Mon Sep 17 00:00:00 2001
+From 6394333eeb94c302bf3046e5fad8a3e623ee8c9d Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Tue, 1 Mar 2016 13:02:51 -0600
 Subject: [PATCH] Configurable cactus and reed natural growth heights

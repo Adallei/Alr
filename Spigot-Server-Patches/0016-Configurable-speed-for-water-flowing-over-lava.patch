@@ -1,4 +1,4 @@
-From 87d498a3c35ae98b42608d6962a9ac5012ed1169 Mon Sep 17 00:00:00 2001
+From 8e5dfeb6fd35803f9e99437520b6f25ead0ce860 Mon Sep 17 00:00:00 2001
 From: Byteflux <byte@byteflux.net>
 Date: Tue, 1 Mar 2016 14:27:13 -0600
 Subject: [PATCH] Configurable speed for water flowing over lava

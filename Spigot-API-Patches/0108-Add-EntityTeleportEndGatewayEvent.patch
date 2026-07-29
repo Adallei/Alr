@@ -1,4 +1,4 @@
-From fe29eec1d0a3d9572871c91e9a42a613b254273b Mon Sep 17 00:00:00 2001
+From 99efa1ef7d9af59f7977eb61dd532299bfd94570 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sat, 9 Jun 2018 13:08:21 +0100
 Subject: [PATCH] Add EntityTeleportEndGatewayEvent

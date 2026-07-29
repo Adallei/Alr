@@ -1,4 +1,4 @@
-From a7489b2b47c6aba42169ec803cd07522cd812b32 Mon Sep 17 00:00:00 2001
+From eec0ce4eabe2a05dd1b497136adfb835472e53bb Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Sat, 23 Sep 2017 21:07:20 +0200
 Subject: [PATCH] Disable logger prefix for various plugins bypassing the

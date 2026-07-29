@@ -1,4 +1,4 @@
-From c7fb2f91cda461b10a68ee1e3ae1f4744460acc9 Mon Sep 17 00:00:00 2001
+From 7962e3bc66519fbd6f3264f2460d8338022df836 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 29 Feb 2016 20:26:39 -0600
 Subject: [PATCH] Fix ServerListPingEvent flagging as Async

@@ -1,4 +1,4 @@
-From 1a5ea2ee37e94d5d711154c266d5ad1bb077b692 Mon Sep 17 00:00:00 2001
+From ea3eebb94e60240752ed64b5a5392f85435ea924 Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Wed, 22 Apr 2026 12:01:20 +0800
 Subject: [PATCH] fix-player-dismount
@@ -7,7 +7,7 @@ Fixes a dupe:
 https://youtu.be/U_u7nYokzSU(Donkey Dupe)
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 9a9592658..3dc18055e 100644
+index 9cc3d3421..73383ac1a 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -345,6 +345,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {

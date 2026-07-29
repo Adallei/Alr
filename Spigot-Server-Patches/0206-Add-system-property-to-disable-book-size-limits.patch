@@ -1,4 +1,4 @@
-From f63c9f055ecb70443e676dc6a389a8b3055fa3da Mon Sep 17 00:00:00 2001
+From 894678b2c3099fa5dbb09527d6e17a00acb73af5 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Sat, 13 May 2017 20:11:21 -0500
 Subject: [PATCH] Add system property to disable book size limits

@@ -1,4 +1,4 @@
-From 64ec6aba5b04e8dc6511c5553350475d48eb70e2 Mon Sep 17 00:00:00 2001
+From 5c8720ea5dbbaf7cbc71fa2e30b8155c982d15c9 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 5 Jun 2018 23:00:29 -0400
 Subject: [PATCH] ItemStack#getMaxItemUseDuration

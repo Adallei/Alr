@@ -1,0 +1,59 @@
+From 2bd0873b638c9b740686608193489bf372f58bb6 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 13 Jun 2026 17:20:06 +0800
+Subject: [PATCH] fix-map-decorations-limit
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index 61d45ebb5..7c2ebc726 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -339,4 +339,9 @@ public class PaperConfig {
+             maxBookTotalSizeMultiplier = 0.98D;
+         }
+     }
++
++    public static int mapDecorationsLimit = 20;
++    private static void mapDecorationsLimit(){
++        mapDecorationsLimit = getInt("settings.map-decorations-limit",20);
++    }
+ }
+diff --git a/src/main/java/net/minecraft/server/WorldMap.java b/src/main/java/net/minecraft/server/WorldMap.java
+index 59173605e..c900c1e6f 100644
+--- a/src/main/java/net/minecraft/server/WorldMap.java
++++ b/src/main/java/net/minecraft/server/WorldMap.java
+@@ -282,9 +282,31 @@ public class WorldMap extends PersistentBase {
+             }
+         }
+ 
++        if (countMapIcon() >= com.destroystokyo.paper.PaperConfig.mapDecorationsLimit) return; // Alr - Map decorations limit
+         this.decorations.put(s, new MapIcon(mapicon_type, b0, b1, b2));
+     }
+ 
++    // Alr start - Map decorations limit
++    private int countMapIcon() {
++        int count = 0;
++
++        for (MapIcon icon : decorations.values()) {
++            switch (icon.b()) {
++                case PLAYER:
++                case PLAYER_OFF_MAP:
++                case PLAYER_OFF_LIMITS:
++                case MANSION:
++                case MONUMENT:
++                    continue;
++                default:
++                    count += 1;
++            }
++        }
++
++        return count;
++    }
++    // Alr end
++
+     @Nullable
+     public Packet<?> a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+         WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker = (WorldMap.WorldMapHumanTracker) this.k.get(entityhuman);
+-- 
+2.50.1.windows.1
+

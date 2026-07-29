@@ -1,4 +1,4 @@
-From 784665b8a74f9e692677bad39dea92ed91016bb5 Mon Sep 17 00:00:00 2001
+From f5ac3e1619cd88fe96a883f355a5ede4936ed51c Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Wed, 11 Oct 2017 19:30:20 +0200
 Subject: [PATCH] Add legacy ping support to PaperServerListPingEvent

@@ -1,4 +1,4 @@
-From f076f1b0ee08fc3976594e87226e93799c50e36a Mon Sep 17 00:00:00 2001
+From ecf3c66c913d2e1e752a694bbc89ba416f6f5fc5 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 1 May 2018 20:18:54 -0400
 Subject: [PATCH] EndermanAttackPlayerEvent

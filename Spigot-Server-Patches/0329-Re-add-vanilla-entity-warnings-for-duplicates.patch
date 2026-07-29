@@ -1,4 +1,4 @@
-From 8b222d44be451e9ee824982a0a0cf63a97b269d2 Mon Sep 17 00:00:00 2001
+From 40a8dca4dbb84708aa867201a998955a978101ee Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 19 Jul 2018 01:08:05 -0400
 Subject: [PATCH] Re-add vanilla entity warnings for duplicates

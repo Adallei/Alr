@@ -1,4 +1,4 @@
-From cb50db1e89d74a8632384870cab0817545893e26 Mon Sep 17 00:00:00 2001
+From 8ec505033f76520424a32612e3de2d714704cf52 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sun, 11 Jun 2017 21:01:18 +0100
 Subject: [PATCH] provide a configurable option to disable creeper lingering

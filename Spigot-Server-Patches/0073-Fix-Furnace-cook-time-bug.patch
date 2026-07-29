@@ -1,4 +1,4 @@
-From 3b3387ac337c86a340aec2e53ce2612c2c4b4a7b Mon Sep 17 00:00:00 2001
+From be95943bf82339ffd6ef7f88f4f34e879d2ffebc Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 18 Mar 2016 14:24:53 -0400
 Subject: [PATCH] Fix Furnace cook time bug

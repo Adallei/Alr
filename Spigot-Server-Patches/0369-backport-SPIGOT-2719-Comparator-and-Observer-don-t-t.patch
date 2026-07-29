@@ -1,4 +1,4 @@
-From 95b7fce909c06136177ee1b14a3cb254859fcc6a Mon Sep 17 00:00:00 2001
+From 42901bb57b54b1043a390337af6d4082f6af13a0 Mon Sep 17 00:00:00 2001
 From: Amosar <maxi.cass11@gmail.com>
 Date: Sat, 1 Dec 2018 20:00:22 +0000
 Subject: [PATCH] backport: SPIGOT-2719: Comparator and Observer don't trigger

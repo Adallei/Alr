@@ -1,4 +1,4 @@
-From 0247cb316c991856e29a08796561f4ab10c57814 Mon Sep 17 00:00:00 2001
+From 33fe100a6a979095dd2ea914d439b1bf7e5ce51b Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 15 Jun 2018 00:30:32 -0400
 Subject: [PATCH] Configurable Alternative LootPool Luck Formula

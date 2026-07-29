@@ -1,4 +1,4 @@
-From ff49b63358bf33a934cdc4b6ef0774227b34e83b Mon Sep 17 00:00:00 2001
+From 47e0ee3db79cbff6dbdb696e147f86f59be67f4d Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 3 Mar 2016 01:13:45 -0600
 Subject: [PATCH] Disable chest cat detection

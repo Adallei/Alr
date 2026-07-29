@@ -1,4 +1,4 @@
-From dfa9b148a894760d7bcfd8bec6a86d297f4e5639 Mon Sep 17 00:00:00 2001
+From a50ac72d2d754e30066f21659eb0e3ab66423578 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 1 May 2018 21:33:35 -0400
 Subject: [PATCH] Close Plugin Class Loaders on Disable

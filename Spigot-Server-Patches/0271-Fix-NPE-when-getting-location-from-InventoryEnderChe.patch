@@ -1,4 +1,4 @@
-From 7eb9fee22cee024a42907562e5bc0094e8de791f Mon Sep 17 00:00:00 2001
+From 79ed31f4fa16387015b3185a9374ecc3397dc306 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sat, 10 Mar 2018 13:03:49 +0000
 Subject: [PATCH] Fix NPE when getting location from InventoryEnderChest opened

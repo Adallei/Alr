@@ -1,4 +1,4 @@
-From e3d79e2d62cbe3ca99d0247829e9bb3f9dbe856a Mon Sep 17 00:00:00 2001
+From 6f23dff39fc75701d44d30e08c5303736e83b6f0 Mon Sep 17 00:00:00 2001
 From: BillyGalbreath <Blake.Galbreath@GMail.com>
 Date: Sat, 16 Jun 2018 01:17:39 -0500
 Subject: [PATCH] Make shield blocking delay configurable

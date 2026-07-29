@@ -1,11 +1,11 @@
-From e36f1e8207085853db228c13606119035882f469 Mon Sep 17 00:00:00 2001
+From c74608f13ac8b01c5f4a14bfb9ffaef238d11221 Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Thu, 11 Jun 2026 23:16:40 +0800
 Subject: [PATCH] fix-shield-damage-sound
 
 
 diff --git a/src/main/java/net/minecraft/server/EntityLiving.java b/src/main/java/net/minecraft/server/EntityLiving.java
-index 5258e6baf..fb87ee620 100644
+index 7c04cbe87..000af5273 100644
 --- a/src/main/java/net/minecraft/server/EntityLiving.java
 +++ b/src/main/java/net/minecraft/server/EntityLiving.java
 @@ -1433,6 +1433,7 @@ public abstract class EntityLiving extends Entity {

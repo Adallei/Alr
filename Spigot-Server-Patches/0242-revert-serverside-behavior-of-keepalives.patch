@@ -1,4 +1,4 @@
-From 60c77ec5c3a9ab2341fe54e422eb01e3a91f28d0 Mon Sep 17 00:00:00 2001
+From 792bd0786f67663e7c85903a19895a1f8dd6dc38 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sun, 15 Oct 2017 00:29:07 +0100
 Subject: [PATCH] revert serverside behavior of keepalives

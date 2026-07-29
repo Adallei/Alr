@@ -1,4 +1,4 @@
-From 815523d709cb921e3a913e7fbea147122feea1f0 Mon Sep 17 00:00:00 2001
+From eb80ca5464f2398b040fcea20528372d7b887393 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 20 Dec 2016 15:26:27 -0500
 Subject: [PATCH] Configurable Cartographer Treasure Maps

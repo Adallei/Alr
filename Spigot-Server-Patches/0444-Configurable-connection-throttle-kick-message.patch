@@ -1,11 +1,11 @@
-From 3f2880ab2148553227bdf5994a1c043d203dafee Mon Sep 17 00:00:00 2001
+From 61a3cf8747b8f6bd43d5d458b99871f90bc9b96d Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Sun, 14 Jun 2026 01:39:04 +0800
 Subject: [PATCH] Configurable-connection-throttle-kick-message
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
-index 09df059fe..ac80ad386 100644
+index 7c2ebc726..a2369bd60 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
 @@ -295,6 +295,11 @@ public class PaperConfig {

@@ -1,4 +1,4 @@
-From 447dbbd49e5b985f1c9be1d6c35c8bcbfdd7dcd5 Mon Sep 17 00:00:00 2001
+From 60be9e6560bd3554951cd06414024c3cfc5b2763 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 12 Oct 2018 01:37:54 -0400
 Subject: [PATCH] Backport the dupe uuid and entity log changes

@@ -1,4 +1,4 @@
-From be31b58ecfd2dd3538dc1daf67b306ed9b9ac58b Mon Sep 17 00:00:00 2001
+From ce2edf604478f3d7d95d7e5ee3c0b9a02ab70b93 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 3 Mar 2016 01:17:12 -0600
 Subject: [PATCH] Ensure commands are not ran async

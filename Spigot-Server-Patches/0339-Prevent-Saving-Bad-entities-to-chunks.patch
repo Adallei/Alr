@@ -1,4 +1,4 @@
-From 26990b817bf74ecdf81117c37b6cf8d740ff9b2e Mon Sep 17 00:00:00 2001
+From 90d69f8d75c2476b803912772963eee26d2f4546 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 26 Jul 2018 00:11:12 -0400
 Subject: [PATCH] Prevent Saving Bad entities to chunks

@@ -1,4 +1,4 @@
-From e5c44be7c22808bcaa8b2a1c128ca368e3c27b63 Mon Sep 17 00:00:00 2001
+From c1c85d9b695bc8d03f1d88fa418743032480b574 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Mon, 21 Mar 2016 00:19:18 -0500
 Subject: [PATCH] Support offline mode in whitelist command as well

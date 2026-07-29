@@ -1,4 +1,4 @@
-From 017e6f4fa54c205db6929f39ae33ddfd21fa5e6e Mon Sep 17 00:00:00 2001
+From cf800b3b8ffe4a8db84c5825372de2d21b8c1f2b Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 16 Jun 2018 16:23:38 -0400
 Subject: [PATCH] Ignore Missing Recipes in RecipeBook to avoid data errors

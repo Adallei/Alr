@@ -1,4 +1,4 @@
-From b27a08001f7bab8ab80c3d27a88e48d33b76ed5f Mon Sep 17 00:00:00 2001
+From c29d2fdd76a71ab627e0b9fcacdd5333d2a9b5ee Mon Sep 17 00:00:00 2001
 From: ruViolence <78062896+ruViolence@users.noreply.github.com>
 Date: Thu, 26 May 2022 23:15:53 +0500
 Subject: [PATCH] fix: update player chunk map on mount
@@ -8,14 +8,14 @@ https://youtu.be/yi8SWMzk-og
 https://youtu.be/9-7KrUMXkv8
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index cb2c459ae..68261112e 100644
+index cb2c459ae..8ac2aa083 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -744,6 +744,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
  
              if (entity2 != entity1 && this.playerConnection != null) {
                  this.playerConnection.a(this.locX, this.locY, this.locZ, this.yaw, this.pitch);
-+                x().getPlayerChunkMap().movePlayer(this); // Reaper - Fix PyroClient AutoDupe
++                x().getPlayerChunkMap().movePlayer(this); // Alr - Fix PyroClient AutoDupe
              }
  
              return true;

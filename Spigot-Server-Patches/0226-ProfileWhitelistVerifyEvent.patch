@@ -1,4 +1,4 @@
-From c0d772d348363556b9fca133de2445f7433b3374 Mon Sep 17 00:00:00 2001
+From af9c7e9de73d7ecb7c249b7dbb0fd0a964c25074 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 3 Jul 2017 18:11:10 -0500
 Subject: [PATCH] ProfileWhitelistVerifyEvent

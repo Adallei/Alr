@@ -1,4 +1,4 @@
-From 9c091d78c59d54bbefc4a13ee8de19206935cca8 Mon Sep 17 00:00:00 2001
+From 7e5642c840f5eefa3df769f28c5222a81a610987 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 4 Jul 2018 15:29:21 -0400
 Subject: [PATCH] Vex#getOwner API

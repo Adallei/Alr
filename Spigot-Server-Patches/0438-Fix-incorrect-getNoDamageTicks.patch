@@ -1,4 +1,4 @@
-From 5332a013f1c6ea0cbf3d7cebce3dc07fa70009ed Mon Sep 17 00:00:00 2001
+From 0505b44fb304239363732d89fefd61bc4be6352f Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Sat, 13 Jun 2026 15:41:24 +0800
 Subject: [PATCH] Fix-incorrect-getNoDamageTicks

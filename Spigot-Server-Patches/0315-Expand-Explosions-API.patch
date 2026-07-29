@@ -1,4 +1,4 @@
-From f60f5c4a7296fb1f013c57421caa92a35d28b85d Mon Sep 17 00:00:00 2001
+From 5d331e4d82d8c0756817f1ffd8c45708569e95c0 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 20 Jun 2018 23:17:24 -0400
 Subject: [PATCH] Expand Explosions API

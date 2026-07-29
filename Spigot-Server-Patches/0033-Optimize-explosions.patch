@@ -1,4 +1,4 @@
-From 78b973bbf9ba6826e025c2ddc1b8d9df1660619e Mon Sep 17 00:00:00 2001
+From c3aaadfcb13ea9884cc0cb186d2843d60521c19d Mon Sep 17 00:00:00 2001
 From: Byteflux <byte@byteflux.net>
 Date: Wed, 2 Mar 2016 11:59:48 -0600
 Subject: [PATCH] Optimize explosions

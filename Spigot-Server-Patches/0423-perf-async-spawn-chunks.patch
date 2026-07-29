@@ -1,4 +1,4 @@
-From 89d951050b1f3ff09790fd2be74c1814ed8d427c Mon Sep 17 00:00:00 2001
+From 4954f5412222ebe7ccf9dd949a0f57b4c72a41eb Mon Sep 17 00:00:00 2001
 From: Softik Lord <dimap9986@gmail.com>
 Date: Thu, 14 Jul 2022 04:57:46 +0500
 Subject: [PATCH] perf: async spawn chunks
@@ -6,7 +6,7 @@ Subject: [PATCH] perf: async spawn chunks
 
 diff --git a/src/main/java/com/adallei/alr/Constants.java b/src/main/java/com/adallei/alr/Constants.java
 new file mode 100644
-index 000000000..b0eb8e01d
+index 000000000..143b4814c
 --- /dev/null
 +++ b/src/main/java/com/adallei/alr/Constants.java
 @@ -0,0 +1,5 @@
@@ -16,7 +16,7 @@ index 000000000..b0eb8e01d
 +    public static final Runnable NULL_RUNNABLE = () -> {};
 +}
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 3b982f990..18bbaa7b9 100644
+index 3b982f990..12d102d00 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -391,7 +391,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
@@ -29,7 +29,7 @@ index 3b982f990..18bbaa7b9 100644
              }
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 7c82e18b9..a34274e48 100644
+index 7c82e18b9..639420b43 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -998,7 +998,7 @@ public final class CraftServer implements Server {

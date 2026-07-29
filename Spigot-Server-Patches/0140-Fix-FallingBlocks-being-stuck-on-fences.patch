@@ -1,4 +1,4 @@
-From 578000efbd09341e1bf94df506ef2d1f0fccd336 Mon Sep 17 00:00:00 2001
+From ec5b7d444d3f830f0fbca7497e677356e19ddf45 Mon Sep 17 00:00:00 2001
 From: Martin Panzer <postremus1996@googlemail.com>
 Date: Fri, 3 Jun 2016 23:13:39 +0200
 Subject: [PATCH] Fix FallingBlocks being stuck on fences

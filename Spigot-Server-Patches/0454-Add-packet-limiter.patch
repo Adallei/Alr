@@ -1,0 +1,296 @@
+From d4c495617fd82297e9ba4efe7675ed10c2be7b0d Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Wed, 29 Jul 2026 08:35:37 +0800
+Subject: [PATCH] Add-packet-limiter
+
+
+diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+index a2369bd60..c28ea8ede 100644
+--- a/src/main/java/com/destroystokyo/paper/PaperConfig.java
++++ b/src/main/java/com/destroystokyo/paper/PaperConfig.java
+@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
+ 
+ import com.google.common.collect.Lists;
+ import net.minecraft.server.MinecraftServer;
++import net.minecraft.server.Packet;
+ import org.bukkit.Bukkit;
+ import org.bukkit.ChatColor;
+ import org.bukkit.command.Command;
+@@ -26,6 +27,8 @@ import co.aikar.timings.Timings;
+ import co.aikar.timings.TimingsManager;
+ import org.spigotmc.SpigotConfig;
+ import org.spigotmc.WatchdogThread;
++import org.spigotmc.SneakyThrow;
++import org.bukkit.configuration.ConfigurationSection;
+ 
+ public class PaperConfig {
+ 
+@@ -349,4 +352,59 @@ public class PaperConfig {
+     private static void mapDecorationsLimit(){
+         mapDecorationsLimit = getInt("settings.map-decorations-limit",20);
+     }
++
++    public static String packetLimiterKickMessage;
++    public static PacketLimit packetLimiterAllPackets;
++    public static Map<Class<? extends Packet<?>>, PacketLimit> packetLimiterOverrides;
++    private static void packetLimiter() {
++        packetLimiterKickMessage = getString("settings.packet-limiter.kick-message", "Kicked for exceeding packet rate limit");
++        packetLimiterAllPackets = new PacketLimit(getDouble("settings.packet-limiter.all-packets.interval", 7.0),
++            getDouble("settings.packet-limiter.all-packets.max-packet-rate", 500.0),
++            getString("settings.packet-limiter.all-packets.action", "KICK"));
++
++        Map<Class<? extends Packet<?>>, PacketLimit> overridesMap = new HashMap<>();
++        ConfigurationSection overridesSect = config.getConfigurationSection("settings.packet-limiter.overrides");
++        if (overridesSect == null) {
++            set("settings.packet-limiter.overrides.PacketPlayInAutoRecipe.interval", 4.0);
++            set("settings.packet-limiter.overrides.PacketPlayInAutoRecipe.max-packet-rate", 5.0);
++            set("settings.packet-limiter.overrides.PacketPlayInAutoRecipe.action", "DROP");
++            overridesSect = config.getConfigurationSection("settings.packet-limiter.overrides");
++        }
++        for (String packet : overridesSect.getKeys(false)) {
++            double interval = config.getDouble("settings.packet-limiter.overrides." + packet + ".interval");
++            double maxPacketRate = config.getDouble("settings.packet-limiter.overrides." + packet + ".max-packet-rate");
++            String action = config.getString("settings.packet-limiter.overrides." + packet + ".action");
++            try {
++                overridesMap.put((Class<? extends Packet<?>>) Class.forName("net.minecraft.server." + packet), new PacketLimit(interval, maxPacketRate, action));
++            } catch (ClassNotFoundException e) {
++                SneakyThrow.sneaky(e);
++            }
++        }
++        packetLimiterOverrides = overridesMap;
++    }
++    public static class PacketLimit {
++        public final double interval;
++        public final double maxPacketRate;
++        public final ViolateAction action;
++
++        public PacketLimit(final double interval, final double maxPacketRate, final String action) {
++            this.interval = interval;
++            this.maxPacketRate = maxPacketRate;
++            if (action.equalsIgnoreCase("KICK") ||
++                action.equalsIgnoreCase("DROP")) {
++                this.action = PacketLimit.ViolateAction.valueOf(action);
++            } else {
++                this.action = ViolateAction.KICK;
++            }
++        }
++
++        public boolean isEnabled() {
++            return this.interval > 0.0 && this.maxPacketRate > 0.0;
++        }
++
++        public enum ViolateAction {
++            KICK,
++            DROP;
++        }
++    }
+ }
+diff --git a/src/main/java/com/destroystokyo/paper/util/IntervalledCounter.java b/src/main/java/com/destroystokyo/paper/util/IntervalledCounter.java
+new file mode 100644
+index 000000000..b2adecd02
+--- /dev/null
++++ b/src/main/java/com/destroystokyo/paper/util/IntervalledCounter.java
+@@ -0,0 +1,115 @@
++package com.destroystokyo.paper.util;
++
++public final class IntervalledCounter {
++
++    protected long[] times;
++    protected long[] counts;
++    protected final long interval;
++    protected long minTime;
++    protected long sum;
++    protected int head; // inclusive
++    protected int tail; // exclusive
++
++    public IntervalledCounter(final long interval) {
++        this.times = new long[8];
++        this.counts = new long[8];
++        this.interval = interval;
++    }
++
++    public void updateCurrentTime() {
++        this.updateCurrentTime(System.nanoTime());
++    }
++
++    public void updateCurrentTime(final long currentTime) {
++        long sum = this.sum;
++        int head = this.head;
++        final int tail = this.tail;
++        final long minTime = currentTime - this.interval;
++
++        final int arrayLen = this.times.length;
++
++        // guard against overflow by using subtraction
++        while (head != tail && this.times[head] - minTime < 0) {
++            sum -= this.counts[head];
++            // there are two ways we can do this:
++            // 1. free the count when adding
++            // 2. free it now
++            // option #2
++            this.counts[head] = 0;
++            if (++head >= arrayLen) {
++                head = 0;
++            }
++        }
++
++        this.sum = sum;
++        this.head = head;
++        this.minTime = minTime;
++    }
++
++    public void addTime(final long currTime) {
++        this.addTime(currTime, 1L);
++    }
++
++    public void addTime(final long currTime, final long count) {
++        // guard against overflow by using subtraction
++        if (currTime - this.minTime < 0) {
++            return;
++        }
++        int nextTail = (this.tail + 1) % this.times.length;
++        if (nextTail == this.head) {
++            this.resize();
++            nextTail = (this.tail + 1) % this.times.length;
++        }
++
++        this.times[this.tail] = currTime;
++        this.counts[this.tail] += count;
++        this.sum += count;
++        this.tail = nextTail;
++    }
++
++    public void updateAndAdd(final int count) {
++        final long currTime = System.nanoTime();
++        this.updateCurrentTime(currTime);
++        this.addTime(currTime, count);
++    }
++
++    public void updateAndAdd(final int count, final long currTime) {
++        this.updateCurrentTime(currTime);
++        this.addTime(currTime, count);
++    }
++
++    private void resize() {
++        final long[] oldElements = this.times;
++        final long[] oldCounts = this.counts;
++        final long[] newElements = new long[this.times.length * 2];
++        final long[] newCounts = new long[this.times.length * 2];
++        this.times = newElements;
++        this.counts = newCounts;
++
++        final int head = this.head;
++        final int tail = this.tail;
++        final int size = tail >= head ? (tail - head) : (tail + (oldElements.length - head));
++        this.head = 0;
++        this.tail = size;
++
++        if (tail >= head) {
++            System.arraycopy(oldElements, head, newElements, 0, size);
++            System.arraycopy(oldCounts, head, newCounts, 0, size);
++        } else {
++            System.arraycopy(oldElements, head, newElements, 0, oldElements.length - head);
++            System.arraycopy(oldElements, 0, newElements, oldElements.length - head, tail);
++
++            System.arraycopy(oldCounts, head, newCounts, 0, oldCounts.length - head);
++            System.arraycopy(oldCounts, 0, newCounts, oldCounts.length - head, tail);
++        }
++    }
++
++    // returns in units per second
++    public double getRate() {
++        return this.size() / (this.interval * 1.0e-9);
++    }
++
++    public long size() {
++        return this.sum;
++    }
++}
+diff --git a/src/main/java/net/minecraft/server/NetworkManager.java b/src/main/java/net/minecraft/server/NetworkManager.java
+index a2b71497c..835c4f2fd 100644
+--- a/src/main/java/net/minecraft/server/NetworkManager.java
++++ b/src/main/java/net/minecraft/server/NetworkManager.java
+@@ -27,6 +27,7 @@ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+ import org.apache.logging.log4j.Marker;
+ import org.apache.logging.log4j.MarkerManager;
++import com.destroystokyo.paper.PaperConfig;
+ 
+ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+ 
+@@ -118,6 +119,26 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+     }
+     // Tuinity end - allow controlled flushing
+ 
++    // Paper start - packet limiter
++    protected final Object PACKET_LIMIT_LOCK = new Object();
++    protected final @Nullable com.destroystokyo.paper.util.IntervalledCounter allPacketCounts = com.destroystokyo.paper.PaperConfig.packetLimiterAllPackets.isEnabled() ? new com.destroystokyo.paper.util.IntervalledCounter(
++        (long)(com.destroystokyo.paper.PaperConfig.packetLimiterAllPackets.interval * 1.0e9)
++    ) : null;
++    protected final java.util.Map<Class<? extends net.minecraft.server.Packet<?>>, com.destroystokyo.paper.util.IntervalledCounter> packetSpecificLimits = new java.util.HashMap<>();
++
++    private boolean stopReadingPackets;
++    private void killForPacketSpam() {
++        ChatComponentText kickReason = new ChatComponentText(PaperConfig.packetLimiterKickMessage);
++        this.sendPacket(new PacketPlayOutKickDisconnect(kickReason), new GenericFutureListener() {
++            public void operationComplete(Future future) throws Exception {
++                close(kickReason);
++            }
++        });
++        this.stopReading();
++        this.stopReadingPackets = true;
++    }
++    // Paper end - packet limiter
++
+     public NetworkManager(EnumProtocolDirection enumprotocoldirection) {
+         this.h = enumprotocoldirection;
+     }
+@@ -174,6 +195,45 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+ 
+     protected void a(ChannelHandlerContext channelhandlercontext, Packet<?> packet) throws Exception {
+         if (this.channel.isOpen()) {
++            // Paper start - packet limiter
++            if (this.stopReadingPackets) {
++                return;
++            }
++            if (this.allPacketCounts != null ||
++                com.destroystokyo.paper.PaperConfig.packetLimiterOverrides.containsKey(packet.getClass())) {
++                long time = System.nanoTime();
++                synchronized (PACKET_LIMIT_LOCK) {
++                    if (this.allPacketCounts != null) {
++                        this.allPacketCounts.updateAndAdd(1, time);
++                        if (this.allPacketCounts.getRate() >= com.destroystokyo.paper.PaperConfig.packetLimiterAllPackets.maxPacketRate) {
++                            this.killForPacketSpam();
++                            return;
++                        }
++                    }
++
++                    for (Class<?> check = packet.getClass(); check != Object.class; check = check.getSuperclass()) {
++                        com.destroystokyo.paper.PaperConfig.PacketLimit packetSpecificLimit =
++                            com.destroystokyo.paper.PaperConfig.packetLimiterOverrides.get(check);
++                        if (packetSpecificLimit == null || !packetSpecificLimit.isEnabled()) {
++                            continue;
++                        }
++                        com.destroystokyo.paper.util.IntervalledCounter counter = this.packetSpecificLimits.computeIfAbsent((Class)check, (clazz) -> {
++                            return new com.destroystokyo.paper.util.IntervalledCounter((long)(packetSpecificLimit.interval * 1.0e9));
++                        });
++                        counter.updateAndAdd(1, time);
++                        if (counter.getRate() >= packetSpecificLimit.maxPacketRate) {
++                            switch (packetSpecificLimit.action) {
++                                case DROP:
++                                    return;
++                                case KICK:
++                                    this.killForPacketSpam();
++                                    return;
++                            }
++                        }
++                    }
++                }
++            }
++            // Paper end - packet limiter
+             try {
+                 ((Packet) packet).a(this.m); // CraftBukkit - decompile error
+             } catch (CancelledPacketHandleException cancelledpackethandleexception) {
+-- 
+2.50.1.windows.1
+

@@ -1,4 +1,4 @@
-From 81c68fe527cd689c56c401016deb65cbf45a79fb Mon Sep 17 00:00:00 2001
+From 318978aa94d5983236e9962f347b3568a324b1a0 Mon Sep 17 00:00:00 2001
 From: vemacs <d@nkmem.es>
 Date: Thu, 3 Mar 2016 01:19:22 -0600
 Subject: [PATCH] All chunks are slime spawn chunks toggle

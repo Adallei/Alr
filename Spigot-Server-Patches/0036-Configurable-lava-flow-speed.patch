@@ -1,4 +1,4 @@
-From 52c0e86f7999336fa76aff0ec1eac8f3bde81eeb Mon Sep 17 00:00:00 2001
+From e29fb932603294e9f35b9b8deff08a9526c7ba86 Mon Sep 17 00:00:00 2001
 From: Byteflux <byte@byteflux.net>
 Date: Wed, 2 Mar 2016 12:27:07 -0600
 Subject: [PATCH] Configurable lava flow speed

@@ -1,4 +1,4 @@
-From 70ad309321fa01718829bcac96670a9446cb0d59 Mon Sep 17 00:00:00 2001
+From 801d1d617db339c4bc78ce12b9374e64ad17a91c Mon Sep 17 00:00:00 2001
 From: ruViolence <78062896+ruViolence@users.noreply.github.com>
 Date: Fri, 10 Jun 2022 16:31:51 +0500
 Subject: [PATCH] perf: reduce entity tracker updates
@@ -7,7 +7,7 @@ Original code from https://github.com/ruViolence/Reaper
 Licensed under GPL-3.0
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index 68261112e..3c2cd474d 100644
+index 8ac2aa083..d785efed7 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -1366,7 +1366,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -15,7 +15,7 @@ index 68261112e..3c2cd474d 100644
          }
  
 -        this.x().getTracker().a(this);
-+        // this.x().getTracker().a(this); // Reaper - Reduce entity tracker updates
++        // this.x().getTracker().a(this); // Alr - Reduce entity tracker updates
      }
  
      public Entity getSpecatorTarget() {

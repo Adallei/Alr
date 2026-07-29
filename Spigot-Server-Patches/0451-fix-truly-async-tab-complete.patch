@@ -1,78 +1,31 @@
-From eb779ce9ad2711db150e4b521e9ddf5716592c0e Mon Sep 17 00:00:00 2001
-From: Adallei <Adallei@outlook.com>
-Date: Tue, 16 Jun 2026 03:05:52 +0800
-Subject: [PATCH] fix-truly-async-tab-complete
+From 61024be570487bb803f68791d70a557bd65a7746 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Sun, 14 Aug 2022 21:54:26 +0500
+Subject: [PATCH] fix: truly async tab complete
 
 
 diff --git a/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java b/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java
-new file mode 100644
-index 000000000..4d74b40fc
---- /dev/null
+index be5ab0162..f3d33498c 100644
+--- a/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java
 +++ b/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java
-@@ -0,0 +1,63 @@
-+package net.minecraft.server;
-+
-+import java.io.IOException;
-+import javax.annotation.Nullable;
-+import org.apache.commons.lang3.StringUtils;
-+
-+public class PacketPlayInTabComplete implements Packet<PacketListenerPlayIn> {
-+
-+    private String a;
-+    private boolean b;
-+    @Nullable
-+    private BlockPosition c;
-+
-+    public PacketPlayInTabComplete() {}
-+
-+    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-+        this.a = packetdataserializer.e(32767);
-+        this.b = packetdataserializer.readBoolean();
-+        boolean flag = packetdataserializer.readBoolean();
-+
-+        if (flag) {
-+            this.c = packetdataserializer.e();
-+        }
-+
-+    }
-+
-+    public void b(PacketDataSerializer packetdataserializer) throws IOException {
-+        packetdataserializer.a(StringUtils.substring(this.a, 0, 32767));
-+        packetdataserializer.writeBoolean(this.b);
-+        boolean flag = this.c != null;
-+
-+        packetdataserializer.writeBoolean(flag);
-+        if (flag) {
-+            packetdataserializer.a(this.c);
-+        }
-+
-+    }
-+
-+    // Reaper start - Truly async tab complete
+@@ -36,8 +36,16 @@ public class PacketPlayInTabComplete implements Packet<PacketListenerPlayIn> {
+ 
+     }
+ 
++    // Alr start - Truly async tab complete
 +    private static final java.util.concurrent.ExecutorService executors = java.util.concurrent.Executors.newCachedThreadPool(new com.google.common.util.concurrent.ThreadFactoryBuilder().setDaemon(true).setNameFormat("Async TabComplete Thread - #%d").build());
-+    public void a(PacketListenerPlayIn packetlistenerplayin) {
+     public void a(PacketListenerPlayIn packetlistenerplayin) {
+-        packetlistenerplayin.a(this);
 +        executors.submit(new Runnable() {
 +            @Override
 +            public void run() {
 +                packetlistenerplayin.a(PacketPlayInTabComplete.this);
 +            }
 +        });
-+        // Reaper end
-+    }
-+
-+    public String a() {
-+        return this.a;
-+    }
-+
-+    @Nullable
-+    public BlockPosition b() {
-+        return this.c;
-+    }
-+
-+    public boolean c() {
-+        return this.b;
-+    }
-+}
++        // Alr end
+     }
+ 
+     public String a() {
 -- 
 2.50.1.windows.1
 

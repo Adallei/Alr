@@ -1,4 +1,4 @@
-From 354437a14eaf523de0ed9132f8c3caa443f1652a Mon Sep 17 00:00:00 2001
+From cab902fa681c4508ef837203f06a4b769de9df26 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 22 Jun 2018 22:59:18 -0400
 Subject: [PATCH] ItemStack API additions for quantity/flags/lore

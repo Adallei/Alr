@@ -1,4 +1,4 @@
-From f5abefc225bc2d177cf8fc0214dee150eb53aee7 Mon Sep 17 00:00:00 2001
+From ef16da1c5aff0f8bae79419adc296edb0a3bbb00 Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Thu, 11 Jun 2026 16:05:09 +0800
 Subject: [PATCH] Backport-configurable-permission-message

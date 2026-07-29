@@ -1,4 +1,4 @@
-From 263d2f6eb2188ca80f989cd5124ca7acaf6c9e54 Mon Sep 17 00:00:00 2001
+From 640087c655688c927c6c8d547fe73adf421f6e44 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 12 May 2016 01:55:17 -0400
 Subject: [PATCH] Do not mark chunks as active for neighbor updates

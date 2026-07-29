@@ -1,4 +1,4 @@
-From aa26386705244d4169eb034a456b6f81d9c1d194 Mon Sep 17 00:00:00 2001
+From d989a71c39ad89f03858ea688b0ac9d9d8eb8859 Mon Sep 17 00:00:00 2001
 From: nopjmp <kthompson@hey.com>
 Date: Fri, 28 Jan 2022 23:35:09 -0600
 Subject: [PATCH] AntiBook Crasher
@@ -6,7 +6,7 @@ Subject: [PATCH] AntiBook Crasher
 This prevents someone from interacting with a book that is too large
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 1ab8b3603..7d34116ff 100644
+index 4e6169f6b..8fed3be86 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -7,17 +7,13 @@ import com.google.common.util.concurrent.Futures;
@@ -33,13 +33,13 @@ index 1ab8b3603..7d34116ff 100644
          this.player.resetIdleTimer();
          if (this.player.activeContainer.windowId == packetplayinwindowclick.a() && this.player.activeContainer.c(this.player) && this.player.activeContainer.canUse(this.player)) { // CraftBukkit
              boolean cancelled = this.player.isSpectator(); // CraftBukkit - see below if
-+            // Dionysus Start - AntiBook Crasher
++            // Alr Start - AntiBook Crasher
 +            if (!cancelled) {
 +                ItemStack stack = packetplayinwindowclick.e();
 +                if (stack != null && stack.getItem() == Items.WRITABLE_BOOK && stack.getTag() != null && stack.getTag().hasKey("pages"))
 +                    cancelled = !validateBook(stack, false);
 +            }
-+            // Dionysus End
++            // Alr End
              if (false/*this.player.isSpectator()*/) { // CraftBukkit
                  NonNullList nonnulllist = NonNullList.a();
  

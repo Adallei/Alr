@@ -1,4 +1,4 @@
-From fd5337506d7ac71ff8d69d880875a7089feb7bc6 Mon Sep 17 00:00:00 2001
+From ab119d3a8243963d358a9d089261cc6f55880f1a Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 21 Dec 2016 03:48:29 -0500
 Subject: [PATCH] Optimize ItemStack.isEmpty()

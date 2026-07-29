@@ -1,4 +1,4 @@
-From 5e6c00526d041f51263c62afb6478e6ff63d143a Mon Sep 17 00:00:00 2001
+From 266e4be768d097d14a8f989ac71201e8ce9021a9 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Sat, 14 Jan 2017 01:22:07 -0600
 Subject: [PATCH] Assign the World in WorldGenStronghold

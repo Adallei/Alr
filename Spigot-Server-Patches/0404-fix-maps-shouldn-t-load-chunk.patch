@@ -1,11 +1,11 @@
-From ef2faf1b3741652d8365330b7a4b0a4f09c31f02 Mon Sep 17 00:00:00 2001
+From ff78ba6f29ea9c0dd9540f9a1a9389353e344e9c Mon Sep 17 00:00:00 2001
 From: Softik Lord <dimap9986@gmail.com>
 Date: Thu, 14 Jul 2022 05:21:08 +0500
 Subject: [PATCH] fix: maps shouldn't load chunk
 
 
 diff --git a/src/main/java/net/minecraft/server/ItemWorldMap.java b/src/main/java/net/minecraft/server/ItemWorldMap.java
-index e0799ff00..3155ec924 100644
+index e0799ff00..50bc52077 100644
 --- a/src/main/java/net/minecraft/server/ItemWorldMap.java
 +++ b/src/main/java/net/minecraft/server/ItemWorldMap.java
 @@ -90,9 +90,9 @@ public class ItemWorldMap extends ItemWorldMapBase {
@@ -13,10 +13,10 @@ index e0799ff00..3155ec924 100644
                              int l2 = (k / i + l1 - 64) * i;
                              HashMultiset hashmultiset = HashMultiset.create();
 -                            Chunk chunk = world.getChunkAtWorldCoords(new BlockPosition(k2, 0, l2));
-+                            Chunk chunk = world.getChunkIfLoaded(new BlockPosition(k2, 0, l2)); // Reaper - Maps shouldn't load chunks
++                            Chunk chunk = world.getChunkIfLoaded(new BlockPosition(k2, 0, l2)); // Alr - Maps shouldn't load chunks
  
 -                            if (!chunk.isEmpty()) {
-+                            if (chunk != null && !chunk.isEmpty()) { // Reaper - Maps shouldn't load chunks
++                            if (chunk != null && !chunk.isEmpty()) { // Alr - Maps shouldn't load chunks
                                  int i3 = k2 & 15;
                                  int j3 = l2 & 15;
                                  int k3 = 0;

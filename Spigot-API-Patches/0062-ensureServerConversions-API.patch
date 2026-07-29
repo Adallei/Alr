@@ -1,4 +1,4 @@
-From 872a9d862a099367e1129d2eadb08651247b6708 Mon Sep 17 00:00:00 2001
+From b0666252c4dc6640ab2a9ecb1f214a4615b22c43 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 4 May 2016 23:55:48 -0400
 Subject: [PATCH] ensureServerConversions API

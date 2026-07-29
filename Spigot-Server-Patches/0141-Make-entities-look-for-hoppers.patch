@@ -1,4 +1,4 @@
-From 7586b535bc3348a695507104a9914557a98d9d3f Mon Sep 17 00:00:00 2001
+From 594dcdbd924027b18ad6d49915af37265ccf18ca Mon Sep 17 00:00:00 2001
 From: Techcable <Techcable@outlook.com>
 Date: Sat, 18 Jun 2016 01:01:37 -0500
 Subject: [PATCH] Make entities look for hoppers

@@ -1,4 +1,4 @@
-From 38582526c3e2988850f23f14feac0c5046b54c82 Mon Sep 17 00:00:00 2001
+From 7dbc78f27200922f164445184252845464423cc0 Mon Sep 17 00:00:00 2001
 From: connorhartley <vectrixu+gh@gmail.com>
 Date: Mon, 31 Dec 2018 18:54:23 +1300
 Subject: [PATCH] Fix an issue where the vehicle doesn't track the passenger

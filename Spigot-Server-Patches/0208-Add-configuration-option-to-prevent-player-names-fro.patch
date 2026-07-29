@@ -1,4 +1,4 @@
-From 4feb536a67b734fdc61336d91a7bcb609ee54364 Mon Sep 17 00:00:00 2001
+From 3b0e95ddcb293f41769cd9522732e1e28931ac6f Mon Sep 17 00:00:00 2001
 From: kashike <kashike@vq.lc>
 Date: Fri, 9 Jun 2017 07:24:34 -0700
 Subject: [PATCH] Add configuration option to prevent player names from being

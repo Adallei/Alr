@@ -1,4 +1,4 @@
-From 24fd84e01f9acaa0c570dd065c7130bf9512c08f Mon Sep 17 00:00:00 2001
+From 26f16e28fc4441e794e4627748886c6825f7c2f5 Mon Sep 17 00:00:00 2001
 From: Byteflux <byte@byteflux.net>
 Date: Mon, 29 Feb 2016 18:09:40 -0600
 Subject: [PATCH] Add BeaconEffectEvent

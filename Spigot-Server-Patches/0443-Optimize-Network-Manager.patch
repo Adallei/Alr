@@ -1,4 +1,4 @@
-From 3cb021d69a14268c5dcadf3aab6b6dc0cd2049ef Mon Sep 17 00:00:00 2001
+From 0732ba4c5ce51e7cbdf5693c593cabad89f9baf5 Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Sat, 13 Jun 2026 19:33:52 +0800
 Subject: [PATCH] Optimize-Network-Manager
@@ -457,7 +457,7 @@ index 668d47089..c433cd1eb 100644
      default boolean packetTooLarge(NetworkManager manager) {
          return false;
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 41c7c1b38..be23439bf 100644
+index 41516b0a7..3966e3632 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -266,7 +266,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {

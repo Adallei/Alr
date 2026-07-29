@@ -1,4 +1,4 @@
-From 69bf7d84fbf700f74d34cc89f5a1f3a58a907762 Mon Sep 17 00:00:00 2001
+From 8e5415917fd94447f172107dabd9b34da23f8009 Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Wed, 15 Aug 2018 12:05:12 -0700
 Subject: [PATCH] Optimize BlockPosition helper methods

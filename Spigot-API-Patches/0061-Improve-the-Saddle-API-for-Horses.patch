@@ -1,4 +1,4 @@
-From 30e305d4b0c2a3db10d79c002bbaef38ca624ca5 Mon Sep 17 00:00:00 2001
+From 72a502f46fca43e1d46b6771e4d694e2f71edf6a Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 10 Dec 2016 16:12:48 -0500
 Subject: [PATCH] Improve the Saddle API for Horses

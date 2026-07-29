@@ -1,4 +1,4 @@
-From e45fc1548b5f0cbe121328591d57e4241cc20c6f Mon Sep 17 00:00:00 2001
+From 60b77f6f09755a1e669a148d91424151289484d5 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Thu, 28 Sep 2017 17:21:32 -0400
 Subject: [PATCH] Add PlayerJumpEvent

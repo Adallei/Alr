@@ -1,4 +1,4 @@
-From 5f5697e3113ce6336eb2287f521d05803a061efc Mon Sep 17 00:00:00 2001
+From 91eebc69ac20de58139085ea33ac85fa9f535d3e Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Tue, 1 Mar 2016 14:32:43 -0600
 Subject: [PATCH] Show 'Paper' in client crashes, server lists, and Mojang

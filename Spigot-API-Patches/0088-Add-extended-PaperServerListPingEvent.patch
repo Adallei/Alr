@@ -1,4 +1,4 @@
-From 8cf658679e15d4b80c0829088853166ffb8d5dda Mon Sep 17 00:00:00 2001
+From ed581ebfc8be5fbf7e096bb05e9f58588f54935c Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Wed, 11 Oct 2017 15:55:38 +0200
 Subject: [PATCH] Add extended PaperServerListPingEvent

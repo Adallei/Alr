@@ -1,4 +1,4 @@
-From d331c5dd38443338c3992d37fec1a58966f6f553 Mon Sep 17 00:00:00 2001
+From 451740d6398127436351df2eb6754288d2a2c8d1 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach@zachbr.io>
 Date: Mon, 5 Nov 2018 21:50:13 -0500
 Subject: [PATCH] Fix server icon encoding to show properly on 1.13 clients as

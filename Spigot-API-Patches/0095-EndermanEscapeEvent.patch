@@ -1,4 +1,4 @@
-From e8828994ef4bec5ac34dfdd3465e5655bdafb6b3 Mon Sep 17 00:00:00 2001
+From 775e627e299380b762ef56e43a31d29f6cfc26fa Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 30 Apr 2018 13:14:30 -0400
 Subject: [PATCH] EndermanEscapeEvent

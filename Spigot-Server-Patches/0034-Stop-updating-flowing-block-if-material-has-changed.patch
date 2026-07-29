@@ -1,4 +1,4 @@
-From deb889be420ca96659698714cc974cad7f4a9da8 Mon Sep 17 00:00:00 2001
+From eef6b739f52eff1b9b6fc1bcd12e9fcd3a7c7498 Mon Sep 17 00:00:00 2001
 From: Iceee <andrew@opticgaming.tv>
 Date: Wed, 2 Mar 2016 12:03:23 -0600
 Subject: [PATCH] Stop updating flowing block if material has changed

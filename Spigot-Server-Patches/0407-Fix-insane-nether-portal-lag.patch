@@ -1,11 +1,11 @@
-From 3ddc54f2083ada077d363ac19865d84056d7c3cd Mon Sep 17 00:00:00 2001
+From 2f52c40384209bf11a7f4f166b9b4ad8db958ba3 Mon Sep 17 00:00:00 2001
 From: Softik Lord <dimap9986@gmail.com>
 Date: Sat, 9 Jul 2022 01:28:37 +0500
 Subject: [PATCH] Fix-insane-nether-portal-lag
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftTravelAgent.java b/src/main/java/org/bukkit/craftbukkit/CraftTravelAgent.java
-index 7ca2617a8..744ef3f3a 100644
+index 7ca2617a8..0ae779b2f 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftTravelAgent.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftTravelAgent.java
 @@ -41,8 +41,16 @@ public class CraftTravelAgent extends PortalTravelAgent implements TravelAgent {
@@ -16,12 +16,12 @@ index 7ca2617a8..744ef3f3a 100644
 -        return found != null ? new Location(location.getWorld(), found.getX(), found.getY(), found.getZ(), location.getYaw(), location.getPitch()) : null;
 +     //   BlockPosition found = pta.findPortal(location.getX(), location.getY(), location.getZ(), this.getSearchRadius());
 + 
-+        // NeonPaper start
++        // Alr start
 +        BlockPosition found = pta.findPortal(location.getX(), location.getY(), location.getZ(), 10);
 +        if (found == null) {
 +            found = pta.findPortal(location.getX(), location.getY(), location.getZ(), this.getSearchRadius());
 +        }
-+        // NeonPaper end
++        // Alr end
 +     
 +	  return found != null ? new Location(location.getWorld(), found.getX(), found.getY(), found.getZ(), location.getYaw(), location.getPitch()) : null;
      }

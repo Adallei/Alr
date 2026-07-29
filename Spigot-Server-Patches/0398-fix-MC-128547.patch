@@ -1,4 +1,4 @@
-From 5ab62db68f5c71dd2dd51414786e77bf103393cf Mon Sep 17 00:00:00 2001
+From 12b581519cbb11a235e171e8d3b056f6a80a8f75 Mon Sep 17 00:00:00 2001
 From: ruViolence <78062896+ruViolence@users.noreply.github.com>
 Date: Fri, 27 May 2022 21:22:05 +0500
 Subject: [PATCH] fix: MC-128547
@@ -6,7 +6,7 @@ Subject: [PATCH] fix: MC-128547
 https://bugs.mojang.com/browse/MC-128547
 
 diff --git a/src/main/java/net/minecraft/server/EnchantmentManager.java b/src/main/java/net/minecraft/server/EnchantmentManager.java
-index f714dc326..c74d00b14 100644
+index f714dc326..84f849d5c 100644
 --- a/src/main/java/net/minecraft/server/EnchantmentManager.java
 +++ b/src/main/java/net/minecraft/server/EnchantmentManager.java
 @@ -114,6 +114,7 @@ public class EnchantmentManager {
@@ -21,10 +21,10 @@ index f714dc326..c74d00b14 100644
              a((EnchantmentManager.EnchantmentModifier) EnchantmentManager.c, entityliving.getItemInMainHand());
          }
  
-+        // Reaper start - Fix MC-128547
++        // Alr start - Fix MC-128547
 +        EnchantmentManager.c.b = null;
 +        EnchantmentManager.c.a = null;
-+        // Reaper end
++        // Alr end
      }
  
      public static void b(EntityLiving entityliving, Entity entity) {
@@ -32,10 +32,10 @@ index f714dc326..c74d00b14 100644
              a((EnchantmentManager.EnchantmentModifier) EnchantmentManager.d, entityliving.getItemInMainHand());
          }
  
-+        // Reaper start - Fix MC-128547
++        // Alr start - Fix MC-128547
 +        EnchantmentManager.d.b = null;
 +        EnchantmentManager.d.a = null;
-+        // Reaper end
++        // Alr end
      }
  
      public static int a(Enchantment enchantment, EntityLiving entityliving) {

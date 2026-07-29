@@ -1,4 +1,4 @@
-From 05681366a8407dcdc5e28b1d45fc07a5b2002dff Mon Sep 17 00:00:00 2001
+From 3c56e11c319011b128543b484a1e037377ebd7d7 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 2 Mar 2019 11:11:29 -0500
 Subject: [PATCH] Don't check ConvertSigns boolean every sign save

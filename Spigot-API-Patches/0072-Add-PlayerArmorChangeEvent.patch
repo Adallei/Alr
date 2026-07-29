@@ -1,4 +1,4 @@
-From cc5028a887d52bc5bfc5cea1b4c68c3d5ba31b66 Mon Sep 17 00:00:00 2001
+From b5fad8f600310b65d38a98ce72db5632bff7328f Mon Sep 17 00:00:00 2001
 From: pkt77 <parkerkt77@gmail.com>
 Date: Fri, 10 Nov 2017 23:45:59 -0500
 Subject: [PATCH] Add PlayerArmorChangeEvent

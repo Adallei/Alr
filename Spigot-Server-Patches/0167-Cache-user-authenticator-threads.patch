@@ -1,4 +1,4 @@
-From 54eb9e43188bcf148ea66323e3a7d8029b21b9bd Mon Sep 17 00:00:00 2001
+From 660f3bfb69aab44f8972e08dc709441d07b6f6ea Mon Sep 17 00:00:00 2001
 From: vemacs <d@nkmem.es>
 Date: Wed, 23 Nov 2016 08:31:45 -0500
 Subject: [PATCH] Cache user authenticator threads

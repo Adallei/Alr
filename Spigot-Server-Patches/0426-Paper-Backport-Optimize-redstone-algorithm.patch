@@ -1,4 +1,4 @@
-From 44a120e1f43947da091e30f361f82f305983e01e Mon Sep 17 00:00:00 2001
+From 590072bdcf6361806e2d5ef2c1e12d270edf82bc Mon Sep 17 00:00:00 2001
 From: nopjmp <kthompson@hey.com>
 Date: Tue, 9 Feb 2021 18:15:34 -0600
 Subject: [PATCH] Paper Backport: Optimize redstone algorithm
@@ -1121,7 +1121,7 @@ index 9d90da98d..330675292 100644
                  this.b(world, blockposition, iblockdata, 0);
                  world.setAir(blockposition);
 diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
-index 95556b237..43ce165d4 100644
+index 58248c2d9..a4f2497e8 100644
 --- a/src/main/java/net/minecraft/server/World.java
 +++ b/src/main/java/net/minecraft/server/World.java
 @@ -585,6 +585,7 @@ public abstract class World implements IBlockAccess {

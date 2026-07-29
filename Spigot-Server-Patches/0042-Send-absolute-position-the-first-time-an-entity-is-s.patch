@@ -1,4 +1,4 @@
-From 15680825860c14e9f4a0109fb6ebbed4f56a9b1b Mon Sep 17 00:00:00 2001
+From e0ba3678c0037bc8ec39e9322b27973447217bb0 Mon Sep 17 00:00:00 2001
 From: Jedediah Smith <jedediah@silencegreys.com>
 Date: Wed, 2 Mar 2016 23:13:07 -0600
 Subject: [PATCH] Send absolute position the first time an entity is seen

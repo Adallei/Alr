@@ -1,4 +1,4 @@
-From 9d6e70f2f92afa0c90c1c6341f2a73167407fbf6 Mon Sep 17 00:00:00 2001
+From 8ccb864920ddc4f273824ae686c70b84c27a068e Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 29 Jul 2018 22:58:47 -0400
 Subject: [PATCH] MC-111480: Start Entity ID's at 1

@@ -1,4 +1,4 @@
-From 0541cd80c4d5aea08b0b0c0f7a2a6517d0d79602 Mon Sep 17 00:00:00 2001
+From 53489565d73a7e3b7e97d83f34149049be70bcbb Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 16 May 2018 20:44:58 -0400
 Subject: [PATCH] WitchThrowPotionEvent

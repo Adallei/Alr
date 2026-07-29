@@ -1,4 +1,4 @@
-From 9bea82114a368bb06d389a0d001d43ff9b1503e7 Mon Sep 17 00:00:00 2001
+From a2a9e63756252461c55f3ed336cbfd2d19084624 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Wed, 2 Mar 2016 23:45:17 -0600
 Subject: [PATCH] Disable spigot tick limiters

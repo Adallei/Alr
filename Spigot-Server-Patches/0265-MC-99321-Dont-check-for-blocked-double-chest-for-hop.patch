@@ -1,4 +1,4 @@
-From 3c563f517562e0ff1c523b065762b8f5c5267b06 Mon Sep 17 00:00:00 2001
+From 866db03e2c43f09ba90b686a2265c8816d48326b Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 24 Jan 2018 20:06:39 -0500
 Subject: [PATCH] MC-99321 - Dont check for blocked double chest for hoppers

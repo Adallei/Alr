@@ -1,4 +1,4 @@
-From a5140a2a4b77fe487b906ab2fb41c17f8129987e Mon Sep 17 00:00:00 2001
+From c9239895c05c40d6ef0b3739c5d91493d2a736b2 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 21 Mar 2018 20:52:07 -0400
 Subject: [PATCH] Fix Dragon Server Crashes

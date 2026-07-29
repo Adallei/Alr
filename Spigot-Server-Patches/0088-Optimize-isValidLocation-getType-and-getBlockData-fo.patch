@@ -1,4 +1,4 @@
-From f83b5dc8a41c5f8cd7929a26dea930f5758e8207 Mon Sep 17 00:00:00 2001
+From 972d7601c809f0b66d8b2510ef55ee395a1dd961 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 3 Mar 2016 02:07:55 -0600
 Subject: [PATCH] Optimize isValidLocation, getType and getBlockData for inling

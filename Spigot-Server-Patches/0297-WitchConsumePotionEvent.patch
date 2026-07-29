@@ -1,4 +1,4 @@
-From 46293f6f39f0f84e53fcb43ab9a45814f3415257 Mon Sep 17 00:00:00 2001
+From 70898244bc8c7038b58ed419e57ebebc487a510b Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 16 May 2018 20:35:16 -0400
 Subject: [PATCH] WitchConsumePotionEvent

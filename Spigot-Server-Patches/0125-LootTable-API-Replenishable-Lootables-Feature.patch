@@ -1,4 +1,4 @@
-From ae84303800f9e73b7082df0581b9eb1b73503a41 Mon Sep 17 00:00:00 2001
+From d203d2e5c55ce8c08155cb8a9e84c7f89e04c803 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 1 May 2016 21:19:14 -0400
 Subject: [PATCH] LootTable API & Replenishable Lootables Feature

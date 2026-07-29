@@ -1,4 +1,4 @@
-From bf8fae6cce11842c59004fa7daf790268e3fd48a Mon Sep 17 00:00:00 2001
+From d9dc3a0a43d432222f907cc4d2cd78edef805914 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 18 Mar 2016 21:22:56 -0400
 Subject: [PATCH] Optimized Light Level Comparisons

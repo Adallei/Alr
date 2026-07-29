@@ -1,4 +1,4 @@
-From 1e311354888f593dbb10a61620bae88b1cbd2ff1 Mon Sep 17 00:00:00 2001
+From d786fc2b55de1a83fe07b330128a93477d34832d Mon Sep 17 00:00:00 2001
 From: Joseph Hirschfeld <joe@ibj.io>
 Date: Thu, 3 Mar 2016 02:46:17 -0600
 Subject: [PATCH] Add configurable portal search radius

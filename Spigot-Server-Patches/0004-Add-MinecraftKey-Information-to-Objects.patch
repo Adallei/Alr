@@ -1,4 +1,4 @@
-From ffbab73add1ae7bbdf29a7163746a76567bd42e6 Mon Sep 17 00:00:00 2001
+From 76c83a5f8ad799ac88a4b8717a09655278caca53 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 4 Jul 2018 01:40:13 -0400
 Subject: [PATCH] Add MinecraftKey Information to Objects

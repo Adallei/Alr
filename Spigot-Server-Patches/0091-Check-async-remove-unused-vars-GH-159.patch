@@ -1,4 +1,4 @@
-From dbf14eda60b9b02c3adeae71b213a18ff4da53a4 Mon Sep 17 00:00:00 2001
+From f5fe47903d5e87ae0dfac9de9a5cae95d212318a Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Sun, 27 Mar 2016 20:24:05 -0500
 Subject: [PATCH] Check async, remove unused vars, GH-159

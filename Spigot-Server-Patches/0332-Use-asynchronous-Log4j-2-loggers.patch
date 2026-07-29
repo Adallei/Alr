@@ -1,4 +1,4 @@
-From 38f40753630941f101e5304e0b5b9412a23175a1 Mon Sep 17 00:00:00 2001
+From 655d2c8a16c4a62ccc6c43435d4267fd4318ebaf Mon Sep 17 00:00:00 2001
 From: Minecrell <minecrell@minecrell.net>
 Date: Tue, 17 Jul 2018 16:42:17 +0200
 Subject: [PATCH] Use asynchronous Log4j 2 loggers

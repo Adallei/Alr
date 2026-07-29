@@ -1,4 +1,4 @@
-From 643eaf02e516101cb43ae1cb8259539a3d8f1255 Mon Sep 17 00:00:00 2001
+From 4967f268bd62636d5e6435ff2cb49bb939d093f9 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Fri, 22 Apr 2016 01:43:11 -0500
 Subject: [PATCH] EntityRegainHealthEvent isFastRegen API

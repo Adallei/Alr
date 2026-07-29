@@ -1,4 +1,4 @@
-From 4f318cf82a6276fed1377f5dd64a132e58af141d Mon Sep 17 00:00:00 2001
+From 25198960a00f54f61161a38e65012f5d31f5a5db Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Fri, 16 Dec 2016 16:03:19 -0600
 Subject: [PATCH] Don't let fishinghooks use portals

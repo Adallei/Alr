@@ -1,4 +1,4 @@
-From f0c5a250c7e9662e8349ec9819f23da27a7a81fe Mon Sep 17 00:00:00 2001
+From 580eb2a9c3270b30976eed5d292d2c806bbb6aa0 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 5 Jun 2018 22:47:08 -0400
 Subject: [PATCH] WitchReadyPotionEvent

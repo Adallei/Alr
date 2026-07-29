@@ -1,4 +1,4 @@
-From 7b24586145d3085236d7f5b6e1646fc1103580c0 Mon Sep 17 00:00:00 2001
+From af1ec4abc1df553edb4e6d23714caebc5262089f Mon Sep 17 00:00:00 2001
 From: willies952002 <admin@domnian.com>
 Date: Thu, 20 Jul 2017 18:05:36 -0400
 Subject: [PATCH] Allow Changing of Player Sample in ServerListPingEvent

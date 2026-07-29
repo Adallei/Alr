@@ -1,4 +1,4 @@
-From 0dbd914cfb37ba7e558645e95916b85da2100322 Mon Sep 17 00:00:00 2001
+From 9f31c7da94424ceb0e11cbee928fe28b87c3fac5 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 21 Mar 2018 19:57:10 -0400
 Subject: [PATCH] Configurable Unrestricted Signs

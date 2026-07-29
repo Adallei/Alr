@@ -1,4 +1,4 @@
-From f1b636fa4ddcde2bd62ac9196e78b40705174101 Mon Sep 17 00:00:00 2001
+From 85dd07625e0dcca86b2540c462a8075613ca952b Mon Sep 17 00:00:00 2001
 From: kashike <kashike@vq.lc>
 Date: Tue, 20 Sep 2016 00:58:01 +0000
 Subject: [PATCH] Configurable flying kick messages

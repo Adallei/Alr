@@ -1,4 +1,4 @@
-From bf60282b7fbd3aa87eb3ef950e3d2f27c5bf043c Mon Sep 17 00:00:00 2001
+From 8003f2e75536427d75770ac0fefbd6ebb93958cc Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Wed, 29 Apr 2026 17:34:47 +0800
 Subject: [PATCH] perf: remove-spigot-metrics

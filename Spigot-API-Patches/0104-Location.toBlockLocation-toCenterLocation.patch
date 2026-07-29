@@ -1,4 +1,4 @@
-From 9549ce23450929b446e66de2e5dd2017db039623 Mon Sep 17 00:00:00 2001
+From cc62ed84525f0217bcc32639cfdc6e55535f2443 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 24 May 2018 21:01:13 -0400
 Subject: [PATCH] Location.toBlockLocation/toCenterLocation()

@@ -1,4 +1,4 @@
-From 1ba471dc81dcacb5f71188bf13113d1f6584e850 Mon Sep 17 00:00:00 2001
+From 1e0502460d688b3e8e8ba26376e37027b4d2e5d2 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 21 Jul 2018 14:27:34 -0400
 Subject: [PATCH] Duplicate UUID Resolve Option

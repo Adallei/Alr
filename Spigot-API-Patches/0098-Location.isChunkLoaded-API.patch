@@ -1,4 +1,4 @@
-From 1ae688550a2f212a5753eadb95c686c8f82bd4e9 Mon Sep 17 00:00:00 2001
+From 180d9bc307faf3c55833ff320832b11c45267ff0 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 30 Apr 2018 19:27:31 -0400
 Subject: [PATCH] Location.isChunkLoaded() API

@@ -1,4 +1,4 @@
-From 558a1e00820222a8c6cd86889d2b2eaef7c8f861 Mon Sep 17 00:00:00 2001
+From 3d690507065b28cf0a9c986565876a89a03d10ad Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach@zachbr.io>
 Date: Sun, 7 Apr 2019 06:22:54 -0400
 Subject: [PATCH] Allow disabling village sieges

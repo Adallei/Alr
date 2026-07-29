@@ -1,4 +1,4 @@
-From 91034d111e01464b405277ab788cc2814ba0b191 Mon Sep 17 00:00:00 2001
+From 8a1fc50eb0818718dd5a32b74476f5a7eb2040f1 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Tue, 3 Jul 2018 19:14:38 +0100
 Subject: [PATCH] Cleanup allocated favicon ByteBuf

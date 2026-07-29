@@ -1,11 +1,11 @@
-From 613ccafc4b3fec8f7cb75662fd19f514c59ddf0d Mon Sep 17 00:00:00 2001
+From 75b79369b0001ae40c4b568b2255fb7d491134df Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Thu, 11 Jun 2026 16:43:59 +0800
 Subject: [PATCH] rebrand-to-Alr
 
 
 diff --git a/pom.xml b/pom.xml
-index d60021747..50aaac884 100644
+index d60021747..a1a57b9d7 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,12 +1,12 @@
@@ -55,7 +55,7 @@ index d60021747..50aaac884 100644
                  </configuration>
                  <executions>
 diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
-index 116d1b3bfb899c382cb59174f05d17d84ddcdddd..7871ec22f59c426fa5c17f410e9788ae0e801a8b 100644
+index 116d1b3bf..cc9e70393 100644
 --- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
 +++ b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
 @@ -17,7 +17,7 @@ public final class PaperConsole extends SimpleTerminalConsole {
@@ -68,7 +68,7 @@ index 116d1b3bfb899c382cb59174f05d17d84ddcdddd..7871ec22f59c426fa5c17f410e9788ae
          );
      }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 4345359ad..61f32fd5e 100644
+index c33f070c7..963b0f215 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -1160,7 +1160,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
@@ -81,7 +81,7 @@ index 4345359ad..61f32fd5e 100644
  
      public CrashReport b(CrashReport crashreport) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index c555cadc3..a96a89e7d 100644
+index d9235009d..0185f6147 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -140,7 +140,7 @@ import javax.annotation.Nonnull; // Paper
@@ -94,7 +94,7 @@ index c555cadc3..a96a89e7d 100644
      private final String bukkitVersion = Versioning.getBukkitVersion();
      private final Logger logger = Logger.getLogger("Minecraft");
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-index 674096cab..0e5c337b0 100644
+index 674096cab..4ed397fde 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 @@ -11,7 +11,7 @@ public final class Versioning {
@@ -107,7 +107,7 @@ index 674096cab..0e5c337b0 100644
  
          if (stream != null) {
 diff --git a/src/main/java/org/spigotmc/WatchdogThread.java b/src/main/java/org/spigotmc/WatchdogThread.java
-index 93dc6983595ace9fa0d024ffbb11e4b98b5fe886..095654f8dcae7861d80f451de56e20a1f5818612 100644
+index 93dc69835..5874a9089 100644
 --- a/src/main/java/org/spigotmc/WatchdogThread.java
 +++ b/src/main/java/org/spigotmc/WatchdogThread.java
 @@ -73,9 +73,7 @@ public class WatchdogThread extends Thread

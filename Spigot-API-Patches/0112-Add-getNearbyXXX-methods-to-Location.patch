@@ -1,4 +1,4 @@
-From a240dc5e7396fb95ce15230363f13e5493e37cfc Mon Sep 17 00:00:00 2001
+From 27777a6a41cd664e61c9239a0ecb2b3a26c57daa Mon Sep 17 00:00:00 2001
 From: BillyGalbreath <Blake.Galbreath@GMail.com>
 Date: Mon, 18 Jun 2018 00:41:46 -0500
 Subject: [PATCH] Add "getNearbyXXX" methods to Location

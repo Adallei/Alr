@@ -1,4 +1,4 @@
-From 80bf8080b7c7ce53b1a20558d408a079b2956bd3 Mon Sep 17 00:00:00 2001
+From 76409a5531bc64a424cced3469483adb3ea7eb09 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Thu, 16 Nov 2017 12:12:41 +0000
 Subject: [PATCH] use CB BlockState implementations for captured blocks

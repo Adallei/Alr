@@ -1,4 +1,4 @@
-From cded905d8d44fae505e5bde46523d1b2cc0ce6b7 Mon Sep 17 00:00:00 2001
+From ffde4517008870f97ab2d9aed127ffca49952a8a Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Sat, 12 Nov 2016 23:25:22 -0600
 Subject: [PATCH] Filter bad data from ArmorStand and SpawnEgg items

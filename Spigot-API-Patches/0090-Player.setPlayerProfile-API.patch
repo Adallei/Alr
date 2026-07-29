@@ -1,4 +1,4 @@
-From 2bde60a7904620653e161a39fc21f62d30951843 Mon Sep 17 00:00:00 2001
+From b5540ff894fc65f383be1e9be5bdef67815dda99 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 18 Mar 2018 12:28:55 -0400
 Subject: [PATCH] Player.setPlayerProfile API

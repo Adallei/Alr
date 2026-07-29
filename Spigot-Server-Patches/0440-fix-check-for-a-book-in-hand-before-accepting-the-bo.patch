@@ -1,11 +1,11 @@
-From f0626dfe7ad7ec46d0537d4eb5c79df66899c14a Mon Sep 17 00:00:00 2001
+From 23177e90b19e767ab48e761cf9c30ff5d69f79a8 Mon Sep 17 00:00:00 2001
 From: Adallei <Adallei@outlook.com>
 Date: Sat, 13 Jun 2026 16:26:04 +0800
 Subject: [PATCH] fix-check-for-a-book-in-hand-before-accepting-the-bo
 
 
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 7d34116ff..41c7c1b38 100644
+index 8fed3be86..41516b0a7 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -2455,6 +2455,12 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {

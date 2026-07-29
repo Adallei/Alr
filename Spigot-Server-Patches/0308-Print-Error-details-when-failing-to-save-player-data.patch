@@ -1,4 +1,4 @@
-From 5658d7678ef7e6ba0b3ece4fd77e033411ecc223 Mon Sep 17 00:00:00 2001
+From 33828d969cfc06afc9e598c86f8a3db5922ca3e1 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 15 Jun 2018 20:37:03 -0400
 Subject: [PATCH] Print Error details when failing to save player data

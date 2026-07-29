@@ -1,4 +1,4 @@
-From 9fcb9919e02688d341af66d10cd3140f8c97cdeb Mon Sep 17 00:00:00 2001
+From 8a118407ded7b72c802b706d7671b3c3a5372d29 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 2 Mar 2019 16:12:35 -0500
 Subject: [PATCH] MC-145260: Fix Whitelist On/Off inconsistency

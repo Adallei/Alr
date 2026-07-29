@@ -1,4 +1,4 @@
-From 007aa6c5b38c6a4be41630239c7be3f8e3f2d356 Mon Sep 17 00:00:00 2001
+From 037f59b07348811f6dd327c79403f46c0afa72ab Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 29 Nov 2017 22:18:54 -0500
 Subject: [PATCH] Avoid NPE in PathfinderGoalTempt

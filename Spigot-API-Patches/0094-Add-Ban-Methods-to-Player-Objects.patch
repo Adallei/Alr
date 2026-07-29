@@ -1,4 +1,4 @@
-From d642943e1994c8efb865628b65342515bfc489c7 Mon Sep 17 00:00:00 2001
+From 1b455dd8b90f9e509dd5ed89ca04ad4cd9859682 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 28 Apr 2018 10:28:50 -0400
 Subject: [PATCH] Add Ban Methods to Player Objects

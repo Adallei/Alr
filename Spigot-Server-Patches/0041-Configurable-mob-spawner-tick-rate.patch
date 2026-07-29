@@ -1,4 +1,4 @@
-From 4d03bd1ec6393217f7f9200ac5f4b26620e661b6 Mon Sep 17 00:00:00 2001
+From c502c629eb89fe7b1f267d6b0ed7a380c31dc46f Mon Sep 17 00:00:00 2001
 From: Sudzzy <originmc@outlook.com>
 Date: Wed, 2 Mar 2016 15:03:53 -0600
 Subject: [PATCH] Configurable mob spawner tick rate

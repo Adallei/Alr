@@ -1,4 +1,4 @@
-From f09ca211c497f9c49a55123225b4ba616c0f5cb9 Mon Sep 17 00:00:00 2001
+From 8452545dea9aa85088c1fa0d79e2cd7985f1963f Mon Sep 17 00:00:00 2001
 From: Techcable <Techcable@outlook.com>
 Date: Wed, 30 Nov 2016 20:56:58 -0600
 Subject: [PATCH] Speedup BlockPos by fixing inlining

@@ -1,4 +1,4 @@
-From c7bbf97f4f5bb46f34a4c34fd2ec0bd7e3f10e10 Mon Sep 17 00:00:00 2001
+From ce1dbb687b5926bd6d62e263ebf10b101838136a Mon Sep 17 00:00:00 2001
 From: MiniDigger <admin@minidigger.me>
 Date: Sat, 10 Mar 2018 00:50:24 +0100
 Subject: [PATCH] Toggleable player crits, helps mitigate hacked clients.

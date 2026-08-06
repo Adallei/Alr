@@ -1,7 +1,7 @@
 From ea90973fc4de71ac189efc820005ea00590223b5 Mon Sep 17 00:00:00 2001
 From: Zach Brown <zach.brown@destroystokyo.com>
 Date: Mon, 29 Feb 2016 21:02:09 -0600
-Subject: [PATCH] Paper config files
+Subject: [PATCH] Alr config files
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperCommand.java b/src/main/java/com/destroystokyo/paper/PaperCommand.java
@@ -36,9 +36,9 @@ index 00000000..ecd1c65a
 +
 +    public PaperCommand(String name) {
 +        super(name);
-+        this.description = "Paper related commands";
-+        this.usageMessage = "/paper [heap | entity | reload | version]";
-+        this.setPermission("bukkit.command.paper");
++        this.description = "Alr related commands";
++        this.usageMessage = "/alr [heap | entity | reload | version]";
++        this.setPermission("bukkit.command.alr");
 +    }
 +
 +    @Override
@@ -94,7 +94,7 @@ index 00000000..ecd1c65a
 +     */
 +    private void listEntities(CommandSender sender, String[] args) {
 +        if (args.length < 2 || args[1].toLowerCase(Locale.ENGLISH).equals("help")) {
-+            sender.sendMessage(ChatColor.RED + "Use /paper entity [list] help for more information on a specific command.");
++            sender.sendMessage(ChatColor.RED + "Use /alr entity [list] help for more information on a specific command.");
 +            return;
 +        }
 +
@@ -103,7 +103,7 @@ index 00000000..ecd1c65a
 +                String filter = "*";
 +                if (args.length > 2) {
 +                    if (args[2].toLowerCase(Locale.ENGLISH).equals("help")) {
-+                        sender.sendMessage(ChatColor.RED + "Use /paper entity list [filter] [worldName] to get entity info that matches the optional filter.");
++                        sender.sendMessage(ChatColor.RED + "Use /alr entity list [filter] [worldName] to get entity info that matches the optional filter.");
 +                        return;
 +                    }
 +                    filter = args[2];
@@ -114,7 +114,7 @@ index 00000000..ecd1c65a
 +                        .collect(Collectors.toSet());
 +
 +                if (names.isEmpty()) {
-+                    sender.sendMessage(ChatColor.RED + "Invalid filter, does not match any entities. Use /paper entity list for a proper list");
++                    sender.sendMessage(ChatColor.RED + "Invalid filter, does not match any entities. Use /alr entity list for a proper list");
 +                    return;
 +                }
 +
@@ -194,13 +194,13 @@ index 00000000..ecd1c65a
 +        Command.broadcastCommandMessage(sender, ChatColor.RED + "If you encounter any issues please use the /stop command to restart your server.");
 +
 +        MinecraftServer console = MinecraftServer.getServer();
-+        com.destroystokyo.paper.PaperConfig.init((File) console.options.valueOf("paper-settings"));
++        com.destroystokyo.paper.PaperConfig.init((File) console.options.valueOf("alr-settings"));
 +        for (WorldServer world : console.worlds) {
 +            world.paperConfig.init();
 +        }
 +        console.server.reloadCount++;
 +
-+        Command.broadcastCommandMessage(sender, ChatColor.GREEN + "Paper config reload complete.");
++        Command.broadcastCommandMessage(sender, ChatColor.GREEN + "Alr config reload complete.");
 +    }
 +}
 diff --git a/src/main/java/com/destroystokyo/paper/PaperConfig.java b/src/main/java/com/destroystokyo/paper/PaperConfig.java
@@ -234,16 +234,16 @@ index 00000000..3d8ee9ed
 +public class PaperConfig {
 +
 +    private static File CONFIG_FILE;
-+    private static final String HEADER = "This is the main configuration file for Paper.\n"
++    private static final String HEADER = "This is the main configuration file for Alr.\n"
 +            + "As you can see, there's tons to configure. Some options may impact gameplay, so use\n"
 +            + "with caution, and make sure you know what each option does before configuring.\n"
 +            + "\n"
-+            + "If you need help with the configuration or have any questions related to Paper,\n"
-+            + "join us in our IRC channel.\n"
++            + "If you need help with the configuration or have any questions related to Alr,\n"
++            + "join us in our discord server.\n"
 +            + "\n"
-+            + "IRC: #paper @ irc.spi.gt ( http://irc.spi.gt/iris/?channels=paper )\n"
-+            + "Wiki: https://paper.readthedocs.org/ \n"
-+            + "Paper Forums: https://aquifermc.org/ \n";
++            + "Discord: https://discord.com/invite/fsPezQkAAE/ \n"
++            + "Github: https://github.com/Adallei/Alr/ \n"
++            + "Website: https://mc.alr.re/ \n";
 +    /*========================================================================*/
 +    public static YamlConfiguration config;
 +    static int version;
@@ -258,7 +258,7 @@ index 00000000..3d8ee9ed
 +            config.load(CONFIG_FILE);
 +        } catch (IOException ex) {
 +        } catch (InvalidConfigurationException ex) {
-+            Bukkit.getLogger().log(Level.SEVERE, "Could not load paper.yml, please correct your syntax errors", ex);
++            Bukkit.getLogger().log(Level.SEVERE, "Could not load alr.yml, please correct your syntax errors", ex);
 +            throw Throwables.propagate(ex);
 +        }
 +        config.options().header(HEADER);
@@ -266,7 +266,7 @@ index 00000000..3d8ee9ed
 +        verbose = getBoolean("verbose", false);
 +
 +        commands = new HashMap<String, Command>();
-+        commands.put("paper", new PaperCommand("paper"));
++        commands.put("alr", new PaperCommand("alr"));
 +
 +        version = getInt("config-version", 13);
 +        set("config-version", 13);
@@ -281,7 +281,7 @@ index 00000000..3d8ee9ed
 +
 +    public static void registerCommands() {
 +        for (Map.Entry<String, Command> entry : commands.entrySet()) {
-+            MinecraftServer.getServer().server.getCommandMap().register(entry.getKey(), "Paper", entry.getValue());
++            MinecraftServer.getServer().server.getCommandMap().register(entry.getKey(), "Alr", entry.getValue());
 +        }
 +    }
 +
@@ -475,7 +475,7 @@ index 8c5361d6..e1cb96a8 100644
              org.spigotmc.SpigotConfig.registerCommands();
              // Spigot end
 +            // Paper start
-+            com.destroystokyo.paper.PaperConfig.init((File) options.valueOf("paper-settings"));
++            com.destroystokyo.paper.PaperConfig.init((File) options.valueOf("alr-settings"));
 +            com.destroystokyo.paper.PaperConfig.registerCommands();
 +            // Paper end
  
@@ -547,7 +547,7 @@ index 0d320baa..b2bbccb5 100644
          }
  
          org.spigotmc.SpigotConfig.init((File) console.options.valueOf("spigot-settings")); // Spigot
-+        com.destroystokyo.paper.PaperConfig.init((File) console.options.valueOf("paper-settings")); // Paper
++        com.destroystokyo.paper.PaperConfig.init((File) console.options.valueOf("alr-settings")); // Paper
          for (WorldServer world : console.worlds) {
              world.worldData.setDifficulty(difficulty);
              world.setSpawnFlags(monsters, animals);
@@ -604,10 +604,10 @@ index a151451d..0c5862a3 100644
                  // Spigot End
 +
 +                // Paper Start
-+                acceptsAll(asList("paper", "paper-settings"), "File for paper settings")
++                acceptsAll(asList("alr", "alr-settings"), "File for alr settings")
 +                        .withRequiredArg()
 +                        .ofType(File.class)
-+                        .defaultsTo(new File("paper.yml"))
++                        .defaultsTo(new File("alr.yml"))
 +                        .describedAs("Yml file");
 +                // Paper end
              }

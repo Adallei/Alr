@@ -1,0 +1,6 @@
+[submodule "work/Paper"]
+	path = work/Paper
+	url = https://github.com/PaperMC/Paper-archive.git
+[submodule "work/Paperclip"]
+	path = work/Paperclip
+	url = https://github.com/Adallei/Paperclip.git

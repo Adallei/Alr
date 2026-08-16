@@ -1,0 +1,198 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Fri, 14 Aug 2026 19:48:50 +0800
+Subject: [PATCH] Modify version command
+
+
+diff --git a/src/main/java/org/bukkit/command/defaults/VersionCommand.java b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
+index d032c83f1dc7cbe3d1505509e2a3755ecc69e9df..c973f08cd415c51370fd586975adc2a6328777bf 100644
+--- a/src/main/java/org/bukkit/command/defaults/VersionCommand.java
++++ b/src/main/java/org/bukkit/command/defaults/VersionCommand.java
+@@ -48,7 +48,7 @@ public class VersionCommand extends BukkitCommand {
+         if (!testPermission(sender)) return true;
+ 
+         if (args.length == 0) {
+-            sender.sendMessage("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")");
++            sender.sendMessage(Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")");
+         } else {
+             StringBuilder name = new StringBuilder();
+ 
+@@ -145,176 +145,4 @@ public class VersionCommand extends BukkitCommand {
+         }
+         return ImmutableList.of();
+     }
+-
+-    private final ReentrantLock versionLock = new ReentrantLock();
+-    private boolean hasVersion = false;
+-    private String versionMessage = null;
+-    private final Set<CommandSender> versionWaiters = new HashSet<CommandSender>();
+-    private boolean versionTaskStarted = false;
+-    private long lastCheck = 0;
+-
+-    private void sendVersion(CommandSender sender) {
+-        if (hasVersion) {
+-            if (System.currentTimeMillis() - lastCheck > 7200000) { // Paper - Lower to 2 hours
+-                lastCheck = System.currentTimeMillis();
+-                hasVersion = false;
+-            } else {
+-                sender.sendMessage(versionMessage);
+-                return;
+-            }
+-        }
+-        versionLock.lock();
+-        try {
+-            if (hasVersion) {
+-                sender.sendMessage(versionMessage);
+-                return;
+-            }
+-            versionWaiters.add(sender);
+-            sender.sendMessage("Checking version, please wait...");
+-            if (!versionTaskStarted) {
+-                versionTaskStarted = true;
+-                new Thread(new Runnable() {
+-
+-                    @Override
+-                    public void run() {
+-                        obtainVersion();
+-                    }
+-                }).start();
+-            }
+-        } finally {
+-            versionLock.unlock();
+-        }
+-    }
+-
+-    // Paper start
+-    private void obtainVersion() {
+-        String version = Bukkit.getVersion();
+-        if (version == null) version = "Custom";
+-        if (version.startsWith("git-Paper-")) {
+-            String[] parts = version.substring("git-Paper-".length()).split("[-\\s]");
+-            int distance = getDistance(null, parts[0]);
+-            switch (distance) {
+-                case -1:
+-                    setVersionMessage("Error obtaining version information");
+-                    break;
+-                case 0:
+-                    setVersionMessage("You are running the latest version");
+-                    break;
+-                case -2:
+-                    setVersionMessage("Unknown version");
+-                    break;
+-                default:
+-                    setVersionMessage("You are " + distance + " version(s) behind");
+-            }
+-        } else if (version.startsWith("git-Bukkit-")) {
+-            // Paper end
+-            version = version.substring("git-Bukkit-".length());
+-            int cbVersions = getDistance("craftbukkit", version.substring(0, version.indexOf(' ')));
+-            if (cbVersions == -1) {
+-                setVersionMessage("Error obtaining version information");
+-            } else {
+-                if (cbVersions == 0) {
+-                    setVersionMessage("You are running the latest version");
+-                } else {
+-                    setVersionMessage("You are " + cbVersions + " version(s) behind");
+-                }
+-            }
+-        } else {
+-            setVersionMessage("Unknown version, custom build?");
+-        }
+-    }
+-
+-    private void setVersionMessage(String msg) {
+-        lastCheck = System.currentTimeMillis();
+-        versionMessage = msg;
+-        versionLock.lock();
+-        try {
+-            hasVersion = true;
+-            versionTaskStarted = false;
+-            for (CommandSender sender : versionWaiters) {
+-                sender.sendMessage(versionMessage);
+-            }
+-            versionWaiters.clear();
+-        } finally {
+-            versionLock.unlock();
+-        }
+-    }
+-
+-    // Paper start
+-    private static int getDistance(String repo, String verInfo) {
+-        try {
+-            int currentVer = Integer.decode(verInfo);
+-            return getFromJenkins(currentVer);
+-        } catch (NumberFormatException ex) {
+-            verInfo = verInfo.replace("\"", "");
+-            return getFromRepo("PaperMC/Paper", verInfo);
+-        }
+-            /*
+-            BufferedReader reader = Resources.asCharSource(
+-                    new URL("https://hub.spigotmc.org/stash/rest/api/1.0/projects/SPIGOT/repos/" + repo + "/commits?since=" + URLEncoder.encode(hash, "UTF-8") + "&withCounts=true"),
+-                    Charsets.UTF_8
+-            ).openBufferedStream();
+-            try {
+-                JSONObject obj = (JSONObject) new JSONParser().parse(reader);
+-                return ((Number) obj.get("totalCount")).intValue();
+-            } catch (ParseException ex) {
+-                ex.printStackTrace();
+-                return -1;
+-            } finally {
+-                reader.close();
+-            }
+-            */
+-    }
+-
+-    private static int getFromJenkins(int currentVer) {
+-        try {
+-            BufferedReader reader = Resources.asCharSource(
+-                    new URL("https://ci.destroystokyo.com/job/Paper/lastSuccessfulBuild/buildNumber"), // Paper
+-                    Charsets.UTF_8
+-            ).openBufferedStream();
+-            try {
+-                int newVer = Integer.decode(reader.readLine());
+-                return newVer - currentVer;
+-            } catch (NumberFormatException ex) {
+-                ex.printStackTrace();
+-                return -2;
+-            } finally {
+-                reader.close();
+-            }
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-            return -1;
+-        }
+-    }
+-
+-    // Contributed by Techcable <Techcable@outlook.com> in GH PR #65
+-    private static final String BRANCH = "ver/1.12.2";
+-    private static int getFromRepo(String repo, String hash) {
+-        try {
+-            HttpURLConnection connection = (HttpURLConnection) new URL("https://api.github.com/repos/" + repo + "/compare/" + BRANCH + "..." + hash).openConnection();
+-            connection.connect();
+-            if (connection.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND) return -2; // Unknown commit
+-            try (
+-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), Charsets.UTF_8))
+-            ) {
+-                JSONObject obj = (JSONObject) new JSONParser().parse(reader);
+-                String status = (String) obj.get("status");
+-                switch (status) {
+-                    case "identical":
+-                        return 0;
+-                    case "behind":
+-                        return ((Number) obj.get("behind_by")).intValue();
+-                    default:
+-                        return -1;
+-                }
+-            } catch (ParseException | NumberFormatException e) {
+-                e.printStackTrace();
+-                return -1;
+-            }
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-            return -1;
+-        }
+-    }
+-    // Paper end
+-}
++}
+\ No newline at end of file

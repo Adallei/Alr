@@ -1,0 +1,68 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 13 Jun 2026 16:26:04 +0800
+Subject: [PATCH] Fix check for a book in hand before accepting the bo
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 1f477fa914deed82fdaad23cec5c2952ed63bde6..7d0126a6db0254f1b04faf504e36a646f19054c3 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -2446,6 +2446,12 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+             packetdataserializer = packetplayincustompayload.b();
+ 
+             try {
++                // Alr start
++                itemstack1 = this.player.getItemInMainHand();
++                if (itemstack1.isEmpty() || itemstack1.getItem() != Items.WRITABLE_BOOK) {
++                    return;
++                }
++                // Alr end
+                 itemstack = packetdataserializer.k();
+                 if (itemstack.isEmpty()) {
+                     return;
+@@ -2455,12 +2461,14 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                     throw new IOException("Invalid book tag!");
+                 }
+ 
++                /*// Alr start
+                 itemstack1 = this.player.getItemInMainHand();
+                 if (itemstack1.isEmpty()) {
+                     return;
+                 }
++                */ // Alr end
+ 
+-                if (itemstack.getItem() == Items.WRITABLE_BOOK && itemstack.getItem() == itemstack1.getItem()) {
++                if (itemstack.getItem() == Items.WRITABLE_BOOK /*&& itemstack.getItem() == itemstack1.getItem()*/) { // Alr
+                     if (!validateBook(itemstack, true)) return; // Paper
+                     itemstack1.a("pages", (NBTBase) itemstack.getTag().getList("pages", 8));
+                     CraftEventFactory.handleEditBookEvent(player, itemstack1); // CraftBukkit
+@@ -2482,6 +2490,12 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 packetdataserializer = packetplayincustompayload.b();
+ 
+                 try {
++                    // Alr start
++                    itemstack1 = this.player.getItemInMainHand();
++                    if (itemstack1.isEmpty() || itemstack1.getItem() != Items.WRITABLE_BOOK) {
++                        return;
++                    }
++                    // Alr end
+                     itemstack = packetdataserializer.k();
+                     if (itemstack.isEmpty()) {
+                         return;
+@@ -2491,12 +2505,14 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                         throw new IOException("Invalid book tag!");
+                     }
+ 
++                    /* // Alr start
+                     itemstack1 = this.player.getItemInMainHand();
+                     if (itemstack1.isEmpty()) {
+                         return;
+                     }
++                    */ // Alr end
+ 
+-                    if (itemstack.getItem() == Items.WRITABLE_BOOK && itemstack1.getItem() == Items.WRITABLE_BOOK) {
++                    if (itemstack.getItem() == Items.WRITABLE_BOOK /*&& itemstack1.getItem() == Items.WRITABLE_BOOK*/) { // Alr
+                         if (!validateBook(itemstack, true)) return; // Paper
+                         ItemStack itemstack2 = new ItemStack(Items.WRITTEN_BOOK);
+ 

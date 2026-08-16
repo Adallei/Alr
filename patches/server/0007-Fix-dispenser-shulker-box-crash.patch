@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Wed, 8 Jun 2022 12:15:31 +0500
+Subject: [PATCH] Fix dispenser shulker box crash
+
+https://youtu.be/zFrCb1RVyys?t=104
+
+diff --git a/src/main/java/net/minecraft/server/DispenserRegistry.java b/src/main/java/net/minecraft/server/DispenserRegistry.java
+index fb1d640cc3e133c7623d051893fd85324b2c4de4..dcc7ab31cf501c1ad8ea87653962668bec2a541b 100644
+--- a/src/main/java/net/minecraft/server/DispenserRegistry.java
++++ b/src/main/java/net/minecraft/server/DispenserRegistry.java
+@@ -757,7 +757,10 @@ public class DispenserRegistry {
+                 EnumDirection enumdirection1 = world.isEmpty(blockposition.down()) ? enumdirection : EnumDirection.UP;
+                 IBlockData iblockdata = block.getBlockData().set(BlockShulkerBox.a, enumdirection1);
+ 
+-                world.setTypeUpdate(blockposition, iblockdata);
++                // Alr start
++                boolean wasPlaced = world.setTypeUpdate(blockposition, iblockdata);
++                if (!wasPlaced) return itemstack;
++                // Alr end
+                 TileEntity tileentity = world.getTileEntity(blockposition);
+                 ItemStack itemstack1 = itemstack.cloneAndSubtract(1);
+ 

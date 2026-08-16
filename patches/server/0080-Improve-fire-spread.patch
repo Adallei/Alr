@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sun, 16 Aug 2026 10:43:22 +0800
+Subject: [PATCH] Improve fire spread
+
+
+diff --git a/src/main/java/net/minecraft/server/BlockFire.java b/src/main/java/net/minecraft/server/BlockFire.java
+index 6832a19af69cc1d495e809eae1ded9237bf136dc..06172e2f582466d1f740335b9cce190979d73183 100644
+--- a/src/main/java/net/minecraft/server/BlockFire.java
++++ b/src/main/java/net/minecraft/server/BlockFire.java
+@@ -236,7 +236,7 @@ public class BlockFire extends Block {
+         // Paper start
+         final IBlockData iblockdata = world.getTypeIfLoaded(blockposition);
+         if (iblockdata == null) return;
+-        int k = this.e(world.getType(blockposition).getBlock());
++        int k = this.e(iblockdata.getBlock()); // Alr - improve fire spread
+ 
+         if (random.nextInt(i) < k) {
+             //IBlockData iblockdata = world.getType(blockposition); // Paper
+@@ -300,7 +300,7 @@ public class BlockFire extends Block {
+ 
+                 final IBlockData type = world.getTypeIfLoaded(blockposition.shift(enumdirection)); // Paper
+                 if (type == null) continue; // Paper
+-                i = Math.max(this.f(world.getType(blockposition.shift(enumdirection)).getBlock()), i);
++                i = Math.max(this.f(type.getBlock()), i); // Alr - improve fire spread
+             }
+ 
+             return i;

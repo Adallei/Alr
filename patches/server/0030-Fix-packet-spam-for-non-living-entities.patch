@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Thu, 27 Apr 2023 04:47:06 +0800
+Subject: [PATCH] Fix packet spam for non-living entities
+
+
+diff --git a/src/main/java/net/minecraft/server/EntityTrackerEntry.java b/src/main/java/net/minecraft/server/EntityTrackerEntry.java
+index 599f9b0275657a25c3851bd17d649e8b1a568ca0..b225403c670f014ba6f9b5b8333cd778f0adf886 100644
+--- a/src/main/java/net/minecraft/server/EntityTrackerEntry.java
++++ b/src/main/java/net/minecraft/server/EntityTrackerEntry.java
+@@ -422,8 +422,10 @@ public class EntityTrackerEntry {
+                     }
+ 
+                     // CraftBukkit start - Fix for nonsensical head yaw
++                    if (this.tracker instanceof EntityLiving) { // Alr start - Fix packet spam
+                     this.headYaw = MathHelper.d(this.tracker.getHeadRotation() * 256.0F / 360.0F);
+                     this.broadcast(new PacketPlayOutEntityHeadRotation(this.tracker, (byte) headYaw));
++                    } // Alr end
+                     // CraftBukkit end
+ 
+                     if (this.tracker instanceof EntityLiving) {

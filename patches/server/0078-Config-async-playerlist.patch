@@ -1,0 +1,61 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sun, 16 Aug 2026 10:03:10 +0800
+Subject: [PATCH] Config async playerlist
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrConfig.java b/src/main/java/com/adallei/alr/AlrConfig.java
+index 8a24ed07d182c0109e888b280019370c31996028..9c7a8d9066048ef9226d5aac11a498d0e41f2eb3 100644
+--- a/src/main/java/com/adallei/alr/AlrConfig.java
++++ b/src/main/java/com/adallei/alr/AlrConfig.java
+@@ -255,4 +255,9 @@ public class AlrConfig {
+         private static void maxJoinsPerTick() {
+             maxJoinsPerTick = getInt("settings.max-joins-per-tick", 3);
+             }
++
++        public static boolean asyncPlayerList;
++        private static void asyncPlayerList() {
++            asyncPlayerList = getBoolean("settings.async-player-list", true);
++            }
+ }
+diff --git a/src/main/java/net/minecraft/server/PlayerList.java b/src/main/java/net/minecraft/server/PlayerList.java
+index f12b2d34c3814d4dec24400f6d30ecc658717f0b..314a2f03abb6246d73bd8eaa16b6b7806e7fe96a 100644
+--- a/src/main/java/net/minecraft/server/PlayerList.java
++++ b/src/main/java/net/minecraft/server/PlayerList.java
+@@ -1034,6 +1034,28 @@ public abstract class PlayerList {
+ 
+     public void tick() {
+         if (++this.v > 600) {
++            // Alr start - Async PlayerList
++            if (com.adallei.alr.AlrConfig.asyncPlayerList) {
++                List<Tuple<EntityPlayer, Packet<?>>> packetEntries = new ArrayList<>(this.players.size());
++
++                for (int i = 0; i < this.players.size(); ++i) {
++                    EntityPlayer target = this.players.get(i);
++
++                    packetEntries.add(new Tuple<>(target, new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_LATENCY, Iterables.filter(this.players, new Predicate<EntityPlayer>() {
++                        @Override
++                        public boolean apply(EntityPlayer input) {
++                            return target.getBukkitEntity().canSee(input.getBukkitEntity());
++                        }
++                    }))));
++                }
++
++                MCUtil.scheduleAsyncTask(() -> {
++                    for (Tuple<EntityPlayer, Packet<?>> tuple : packetEntries) {
++                        tuple.a().playerConnection.sendPacket(tuple.b());
++                    }
++                });
++            } else {
++            // Alr end
+             // CraftBukkit start
+             for (int i = 0; i < this.players.size(); ++i) {
+                 final EntityPlayer target = (EntityPlayer) this.players.get(i);
+@@ -1045,6 +1067,7 @@ public abstract class PlayerList {
+                     }
+                 })));
+             }
++            } // Alr
+             // CraftBukkit end
+             this.v = 0;
+         }

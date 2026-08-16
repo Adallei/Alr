@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sat, 25 Apr 2026 17:56:15 +0800
+Subject: [PATCH] Fix creative-inventory-drop-item-age
+
+Items dropped by players in Creative mode in the inventory have a default despawn time starting from 4800 ticks.
+When the item-despawn-rate is lower than 4800, it will cause items dropped from the inventory in Creative mode to disappear instantly.
+
+diff --git a/src/main/java/net/minecraft/server/EntityItem.java b/src/main/java/net/minecraft/server/EntityItem.java
+index 4fafb4977a40176d88e790924afba8fa9e17867b..a0a8f3c5c94def7f3715ad94a986d43f0f5acb8f 100644
+--- a/src/main/java/net/minecraft/server/EntityItem.java
++++ b/src/main/java/net/minecraft/server/EntityItem.java
+@@ -243,7 +243,7 @@ public class EntityItem extends Entity implements HopperPusher {
+     }
+ 
+     public void j() {
+-        this.age = 4800;
++        this.age = 0; // Alr - fix creative inventory drop item age
+     }
+ 
+     public boolean aq() {

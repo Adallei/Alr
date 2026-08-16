@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Thu, 26 May 2022 23:49:40 +0500
+Subject: [PATCH] Fix tile entity ticking crash
+
+Fixes a NoSuchElementException crash when ticking tile entities, which happens due to bad plugins.
+
+diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
+index e545e9764a4aa117896ca1b3e55d2613642d7244..7a5edd96f046fc03ae3266d4bbdd02afcb150881 100644
+--- a/src/main/java/net/minecraft/server/WorldServer.java
++++ b/src/main/java/net/minecraft/server/WorldServer.java
+@@ -760,7 +760,15 @@ public class WorldServer extends World implements IAsyncTaskHandler {
+                 NextTickListEntry nextticklistentry;
+ 
+                 for (int j = 0; j < i; ++j) {
++                    // Alr start - Fix TileEntity ticking crash
++                    try {
+                     nextticklistentry = (NextTickListEntry) this.nextTickList.first();
++                    } catch (java.util.NoSuchElementException e) {
++                        LogManager.getLogger().warn("NextTickList got an inconsistency in the world " + worldData.getName() + ", fixing it.");
++                        nextTickList.fixInconsistence();
++                        break;
++                    }
++                    // Alr end
+                     if (!flag && nextticklistentry.b > this.worldData.getTime()) {
+                         break;
+                     }
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java b/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java
+index cd864c404747f8f77417e67ca319b3daa04bae59..57043f6db2a7a566efa32ba4a2afccd355698ce2 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/HashTreeSet.java
+@@ -114,4 +114,5 @@ public class HashTreeSet<V> implements Set<V> {
+         return tree.first();
+     }
+ 
++    public void fixInconsistence() { hash.removeIf(entry -> !tree.contains(entry)); } // Alr - Fix TileEntity ticking crash
+ }

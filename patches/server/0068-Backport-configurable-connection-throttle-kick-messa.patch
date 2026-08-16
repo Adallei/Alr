@@ -1,0 +1,41 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Sun, 14 Jun 2026 01:39:04 +0800
+Subject: [PATCH] Backport configurable connection throttle kick message
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrConfig.java b/src/main/java/com/adallei/alr/AlrConfig.java
+index 8645732fb878dbe88d635f6702ab4ace2c00955e..ca978c2e50e78536c4da973bdbc8a4a74ba8c58f 100644
+--- a/src/main/java/com/adallei/alr/AlrConfig.java
++++ b/src/main/java/com/adallei/alr/AlrConfig.java
+@@ -175,4 +175,9 @@ public class AlrConfig {
+     private static void serverModName() {
+                 serverModName = getString("settings.server-mod-name", serverModName);
+             }
++
++    public static String connectionThrottleKickMessage = "Connection throttled! Please wait before reconnecting.";
++    private static void connectionThrottleKickMessage() {
++                connectionThrottleKickMessage = getString("messages.kick.connection-throttle", connectionThrottleKickMessage);
++            }
+ }
+diff --git a/src/main/java/net/minecraft/server/HandshakeListener.java b/src/main/java/net/minecraft/server/HandshakeListener.java
+index c583ab7d9a481a7df05acf70dc0d7cc341473bb1..7e83ea1ffa6f1d5e959d654676afd0239a6723ef 100644
+--- a/src/main/java/net/minecraft/server/HandshakeListener.java
++++ b/src/main/java/net/minecraft/server/HandshakeListener.java
+@@ -4,6 +4,7 @@ package net.minecraft.server;
+ import java.net.InetAddress;
+ import java.util.HashMap;
+ // CraftBukkit end
++import com.adallei.alr.AlrConfig; // Paper
+ 
+ public class HandshakeListener implements PacketHandshakingInListener {
+ 
+@@ -37,7 +38,7 @@ public class HandshakeListener implements PacketHandshakingInListener {
+                 synchronized (throttleTracker) {
+                     if (throttleTracker.containsKey(address) && !"127.0.0.1".equals(address.getHostAddress()) && currentTime - throttleTracker.get(address) < connectionThrottle) {
+                         throttleTracker.put(address, currentTime);
+-                        chatmessage = new ChatMessage("Connection throttled! Please wait before reconnecting.");
++                        chatmessage = new ChatMessage(com.adallei.alr.AlrConfig.connectionThrottleKickMessage); // Paper - Configurable connection throttle kick message
+                         this.b.sendPacket(new PacketLoginOutDisconnect(chatmessage));
+                         this.b.close(chatmessage);
+                         return;

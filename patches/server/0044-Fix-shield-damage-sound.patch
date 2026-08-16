@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 11 Jun 2026 23:16:40 +0800
+Subject: [PATCH] Fix shield damage sound
+
+
+diff --git a/src/main/java/net/minecraft/server/EntityLiving.java b/src/main/java/net/minecraft/server/EntityLiving.java
+index bfe9ab192f9db307b055edf93942e4fa9dc3e7d8..3f43f369ba8329ebdc5bd11f495eda2c15df4790 100644
+--- a/src/main/java/net/minecraft/server/EntityLiving.java
++++ b/src/main/java/net/minecraft/server/EntityLiving.java
+@@ -1433,6 +1433,7 @@ public abstract class EntityLiving extends Entity {
+ 
+             // Apply blocking code // PAIL: steal from above
+             if (event.getDamage(DamageModifier.BLOCKING) < 0) {
++                this.world.broadcastEntityEffect(this, (byte) 29); // Alr fix SPIGOT-4635 - shield damage sound
+                 this.damageShield((float) -event.getDamage(DamageModifier.BLOCKING));
+                 Entity entity = damagesource.i();
+ 

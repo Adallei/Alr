@@ -1,0 +1,45 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Tue, 18 Jul 2023 23:56:41 +0800
+Subject: [PATCH] Optimize held items swapping
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index ac3c1425413cc7a23670b6fc9b9bdf8b631b86c5..cb4e63e6e5a7ddf0a2adcf5b3ef5f6850f38fa58 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -885,15 +885,34 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 ItemStack itemstack = this.player.b(EnumHand.OFF_HAND);
+ 
+                 // CraftBukkit start
++                /* // Reaper start - Optimize swap
+                 PlayerSwapHandItemsEvent swapItemsEvent = new PlayerSwapHandItemsEvent(getPlayer(), CraftItemStack.asBukkitCopy(itemstack), CraftItemStack.asBukkitCopy(this.player.b(EnumHand.MAIN_HAND)));
++                */
++                CraftItemStack mainHand = CraftItemStack.asCraftMirror(itemstack);
++                CraftItemStack offHand = CraftItemStack.asCraftMirror(this.player.b(EnumHand.MAIN_HAND));
++                PlayerSwapHandItemsEvent swapItemsEvent = new PlayerSwapHandItemsEvent(getPlayer(), mainHand.clone(), offHand.clone());
++                // Reaper end - Optimize swap
+                 this.server.getPluginManager().callEvent(swapItemsEvent);
+                 if (swapItemsEvent.isCancelled()) {
+                     return;
+                 }
++                /* // Reaper start - Optimize swap
+                 itemstack = CraftItemStack.asNMSCopy(swapItemsEvent.getMainHandItem());
+                 this.player.a(EnumHand.OFF_HAND, CraftItemStack.asNMSCopy(swapItemsEvent.getOffHandItem()));
+                 // CraftBukkit end
+                 this.player.a(EnumHand.MAIN_HAND, itemstack);
++                */
++                if (swapItemsEvent.getOffHandItem().equals(offHand)) {
++                    this.player.a(EnumHand.OFF_HAND, this.player.b(EnumHand.MAIN_HAND));
++                } else {
++                    this.player.a(EnumHand.OFF_HAND, CraftItemStack.asNMSCopy(swapItemsEvent.getOffHandItem()));
++                }
++                if (swapItemsEvent.getMainHandItem().equals(mainHand)) {
++                    this.player.a(EnumHand.MAIN_HAND, itemstack);
++                } else {
++                    this.player.a(EnumHand.MAIN_HAND, CraftItemStack.asNMSCopy(swapItemsEvent.getMainHandItem()));
++                }
++                // Reaper end - Optimize swap
+             }
+ 
+             return;

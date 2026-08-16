@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: AlexProgrammerDE <40795980+AlexProgrammerDE@users.noreply.github.com>
+Date: Sun, 28 Aug 2022 14:11:45 +0200
+Subject: [PATCH] Prevent IndexOutOfBound in window packet
+
+
+diff --git a/src/main/java/net/minecraft/server/Container.java b/src/main/java/net/minecraft/server/Container.java
+index 3a488ce207a060d6c080c7d6d7ca641e23edb991..4bd2c45ced20d8dbf702f8218b17eb100cef4728 100644
+--- a/src/main/java/net/minecraft/server/Container.java
++++ b/src/main/java/net/minecraft/server/Container.java
+@@ -107,7 +107,13 @@ public abstract class Container {
+     }
+ 
+     public Slot getSlot(int i) {
+-        return (Slot) this.slots.get(i);
++        // Alr start - Prevent IndexOutOfBoundsException
++        try {
++            return (Slot) this.slots.get(i);
++        } catch (IndexOutOfBoundsException e) {
++            return null;
++        }
++        // Alr end
+     }
+ 
+     public ItemStack shiftClick(EntityHuman entityhuman, int i) {

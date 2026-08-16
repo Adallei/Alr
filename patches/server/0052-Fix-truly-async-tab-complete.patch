@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Sun, 14 Aug 2022 21:54:26 +0500
+Subject: [PATCH] Fix truly async tab complete
+
+
+diff --git a/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java b/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java
+index be5ab01621c2182ddd34e980dda633e9761a6cd9..f3d33498c03d5aeb2a091533ac8dba494a3cd0b1 100644
+--- a/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java
++++ b/src/main/java/net/minecraft/server/PacketPlayInTabComplete.java
+@@ -36,8 +36,16 @@ public class PacketPlayInTabComplete implements Packet<PacketListenerPlayIn> {
+ 
+     }
+ 
++    // Alr start - Truly async tab complete
++    private static final java.util.concurrent.ExecutorService executors = java.util.concurrent.Executors.newCachedThreadPool(new com.google.common.util.concurrent.ThreadFactoryBuilder().setDaemon(true).setNameFormat("Async TabComplete Thread - #%d").build());
+     public void a(PacketListenerPlayIn packetlistenerplayin) {
+-        packetlistenerplayin.a(this);
++        executors.submit(new Runnable() {
++            @Override
++            public void run() {
++                packetlistenerplayin.a(PacketPlayInTabComplete.this);
++            }
++        });
++        // Alr end
+     }
+ 
+     public String a() {

@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Fri, 3 Jun 2022 05:46:10 +0500
+Subject: [PATCH] Fix do not load chunks on adjacent chest check
+
+
+diff --git a/src/main/java/net/minecraft/server/TileEntityChest.java b/src/main/java/net/minecraft/server/TileEntityChest.java
+index 631304122cf488fc7f83c016c508329ad00a6b59..dbad9eadf44d8a8cbed3c6817c2529d6fa284316 100644
+--- a/src/main/java/net/minecraft/server/TileEntityChest.java
++++ b/src/main/java/net/minecraft/server/TileEntityChest.java
+@@ -153,6 +153,7 @@ public class TileEntityChest extends TileEntityLootable { // Paper - Remove ITic
+ 
+     public void o() {
+         if (!this.a) {
++            if (this.world == null || !this.world.areChunksLoaded(this.position, 1)) return; // Alr
+             this.a = true;
+             this.h = this.a(EnumDirection.WEST);
+             this.g = this.a(EnumDirection.EAST);

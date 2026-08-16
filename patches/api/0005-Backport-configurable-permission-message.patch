@@ -1,0 +1,55 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 11 Jun 2026 16:05:09 +0800
+Subject: [PATCH] Backport configurable permission message
+
+
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index 682d2bbf2831e47285f625a41bc0f353c346db7a..36bd61c75a5e6d00cafb1b53c6fcdffa60095799 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -1234,6 +1234,14 @@ public final class Bukkit {
+         return server.suggestPlayerNamesWhenNullTabCompletions();
+     }
+ 
++    /**
++     * 
++     * @return the default no permission message used on the server
++     */
++     public static String getPermissionMessage() {
++         return server.getPermissionMessage();
++     }    
++
+     /**
+      * Creates a PlayerProfile for the specified uuid, with name as null
+      * @param uuid UUID to create profile for
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 06f17f8e7711498cef01e9f16fbc5523e430877a..a19153c0c3ac9cafff4f78c1ed865696d991b230 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -1062,6 +1062,12 @@ public interface Server extends PluginMessageRecipient {
+      */
+     boolean suggestPlayerNamesWhenNullTabCompletions();
+ 
++    /**
++     * 
++     * @return the default no permission message used on the server
++     */
++    String getPermissionMessage();
++
+     /**
+      * Creates a PlayerProfile for the specified uuid, with name as null
+      * @param uuid UUID to create profile for
+diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
+index 86c78098266035cf9cbe3b50525630f138999e54..719e935a8866f8167782b9e781b8fbd7ede3f729 100644
+--- a/src/main/java/org/bukkit/command/Command.java
++++ b/src/main/java/org/bukkit/command/Command.java
+@@ -179,7 +179,7 @@ public abstract class Command {
+         }
+ 
+         if (permissionMessage == null) {
+-            target.sendMessage(ChatColor.RED + "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
++            target.sendMessage(Bukkit.getPermissionMessage()); // Paper
+         } else if (permissionMessage.length() != 0) {
+             for (String line : permissionMessage.replace("<permission>", permission).split("\n")) {
+                 target.sendMessage(line);

@@ -1,0 +1,41 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 11 Jun 2026 16:53:32 +0800
+Subject: [PATCH] Configurable-server-mod-name
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrConfig.java b/src/main/java/com/adallei/alr/AlrConfig.java
+index 5816289dd17dda5f7c83c0b63d754a9aecac271a..8645732fb878dbe88d635f6702ab4ace2c00955e 100644
+--- a/src/main/java/com/adallei/alr/AlrConfig.java
++++ b/src/main/java/com/adallei/alr/AlrConfig.java
+@@ -170,4 +170,9 @@ public class AlrConfig {
+         config.addDefault(path, def);
+         return config.getString(path, config.getString(path));
+     }
++
++    public static String serverModName = "Alr";
++    private static void serverModName() {
++                serverModName = getString("settings.server-mod-name", serverModName);
++            }
+ }
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 963b0f215c3a0242729fc2486e76f59904804649..b8845ebce49f83ef8f10ce77d7eff7086554b771 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -49,6 +49,7 @@ import org.bukkit.craftbukkit.Main;
+ // CraftBukkit end
+ import org.spigotmc.SlackActivityAccountant; // Spigot
+ import co.aikar.timings.MinecraftTimings; // Paper
++import com.adallei.alr.AlrConfig; //Paper
+ 
+ public abstract class MinecraftServer implements ICommandListener, Runnable, IAsyncTaskHandler, IMojangStatistics {
+ 
+@@ -1160,7 +1161,7 @@ public abstract class MinecraftServer implements ICommandListener, Runnable, IAs
+     }
+ 
+     public String getServerModName() {
+-        return "Alr"; // Alr - Alr > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return com.adallei.alr.AlrConfig.serverModName; // Alr - Alr > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public CrashReport b(CrashReport crashreport) {

@@ -1,0 +1,64 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: AlexProgrammerDE <40795980+AlexProgrammerDE@users.noreply.github.com>
+Date: Sat, 18 Jun 2022 10:11:13 +0200
+Subject: [PATCH] Config optimize suffocation
+
+Pufferfish
+Copyright (C) 2022 Pufferfish Studios LLC
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+diff --git a/src/main/java/com/adallei/alr/AlrWorldConfig.java b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+index 73e19e29230832a10f0c25c7e9014a46ce0d3442..f20b33c0a5345a25d167f8495f2fe6e83ddb2062 100644
+--- a/src/main/java/com/adallei/alr/AlrWorldConfig.java
++++ b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+@@ -78,4 +78,9 @@ public class AlrWorldConfig {
+     private void babyZombieDayBurning() {
+                 babyZombieDayBurning = getBoolean("baby-zombie-day-burning", false);
+             }
++
++    public static boolean enableSuffocationOptimization;
++    private void suffocationOptimization() {
++                enableSuffocationOptimization = getBoolean("enable-suffocation-optimization", true);
++            }
+ }
+diff --git a/src/main/java/net/minecraft/server/EntityLiving.java b/src/main/java/net/minecraft/server/EntityLiving.java
+index 3f43f369ba8329ebdc5bd11f495eda2c15df4790..3d0f54621c1551b66b3241747c0181c6512e5ae7 100644
+--- a/src/main/java/net/minecraft/server/EntityLiving.java
++++ b/src/main/java/net/minecraft/server/EntityLiving.java
+@@ -209,7 +209,7 @@ public abstract class EntityLiving extends Entity {
+         boolean flag = this instanceof EntityHuman;
+ 
+         if (this.isAlive()) {
+-            if (this.inBlock()) {
++            if ((!com.adallei.alr.AlrWorldConfig.enableSuffocationOptimization || (ticksLived % 10 == 0 && couldPossiblyBeHurt(1.0F))) && this.inBlock()) { // Alr - optimize suffocation
+                 this.damageEntity(DamageSource.STUCK, 1.0F);
+             } else if (flag && !this.world.getWorldBorder().a(this.getBoundingBox())) {
+                 double d0 = this.world.getWorldBorder().a((Entity) this) + this.world.getWorldBorder().getDamageBuffer();
+@@ -314,6 +314,15 @@ public abstract class EntityLiving extends Entity {
+         this.world.methodProfiler.b();
+     }
+ 
++    // Alr start - optimize suffocation
++    public boolean couldPossiblyBeHurt(float amount) {
++        if ((float) this.noDamageTicks > (float) this.maxNoDamageTicks / 2.0F && amount <= this.lastDamage) {
++            return false;
++        }
++        return true;
++    }
++    // Alr end
++
+     // CraftBukkit start
+     public int getExpReward() {
+         int exp = this.getExpValue(this.killer);

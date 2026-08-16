@@ -1,0 +1,42 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Fri, 14 Aug 2026 23:56:04 +0800
+Subject: [PATCH] Backport configurable permission message
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrConfig.java b/src/main/java/com/adallei/alr/AlrConfig.java
+index ca978c2e50e78536c4da973bdbc8a4a74ba8c58f..fc9248cda9cef9b0e5072153a026c61efd079382 100644
+--- a/src/main/java/com/adallei/alr/AlrConfig.java
++++ b/src/main/java/com/adallei/alr/AlrConfig.java
+@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
+ 
+ import net.minecraft.server.MinecraftServer;
+ import org.bukkit.Bukkit;
++import org.bukkit.ChatColor;
+ import org.bukkit.command.Command;
+ import org.bukkit.configuration.InvalidConfigurationException;
+ import org.bukkit.configuration.file.YamlConfiguration;
+@@ -180,4 +181,9 @@ public class AlrConfig {
+     private static void connectionThrottleKickMessage() {
+                 connectionThrottleKickMessage = getString("messages.kick.connection-throttle", connectionThrottleKickMessage);
+             }
++
++    public static String noPermissionMessage = "&cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.";
++    private static void noPermissionMessage() {
++                noPermissionMessage = ChatColor.translateAlternateColorCodes('&', getString("messages.no-permission", noPermissionMessage));
++            }
+ }
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index 14ef76534250021bdc9a0dc238f1e28401d7fa96..8e0ff9deced542a79d398cd63558485515cfde53 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -1977,5 +1977,9 @@ public final class CraftServer implements Server {
+         }
+         return new com.destroystokyo.paper.profile.CraftPlayerProfile(uuid, name);
+     }
++
++    public String getPermissionMessage() {
++        return com.adallei.alr.AlrConfig.noPermissionMessage;
++    }
+     // Paper end
+ }

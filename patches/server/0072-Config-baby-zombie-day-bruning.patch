@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Tue, 16 Jun 2026 09:32:40 +0800
+Subject: [PATCH] Config baby zombie day bruning
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrWorldConfig.java b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+index e032975efa1d77112972f920d4999ade5d03a840..73e19e29230832a10f0c25c7e9014a46ce0d3442 100644
+--- a/src/main/java/com/adallei/alr/AlrWorldConfig.java
++++ b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+@@ -73,4 +73,9 @@ public class AlrWorldConfig {
+             log("Using vanilla redstone algorithm.");
+         }
+     }
++
++    public boolean babyZombieDayBurning = false;
++    private void babyZombieDayBurning() {
++                babyZombieDayBurning = getBoolean("baby-zombie-day-burning", false);
++            }
+ }
+diff --git a/src/main/java/net/minecraft/server/EntityZombie.java b/src/main/java/net/minecraft/server/EntityZombie.java
+index 6111ca0b26c2a88bd56629244712fe7f7cce0db8..b4a579661d86d037c0dc43091f3c8d3981492bdd 100644
+--- a/src/main/java/net/minecraft/server/EntityZombie.java
++++ b/src/main/java/net/minecraft/server/EntityZombie.java
+@@ -120,7 +120,7 @@ public class EntityZombie extends EntityMonster {
+     }
+ 
+     public void n() {
+-        if (this.world.D() && !this.world.isClientSide && !this.isBaby() && this.p()) {
++        if (this.world.D() && !this.world.isClientSide && !this.isBaby() || world.alrConfig.babyZombieDayBurning && this.p()) { // Alr - Baby zombie day burning
+             float f = this.aw();
+ 
+             if (f > 0.5F && this.random.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.h(new BlockPosition(this.locX, this.locY + (double) this.getHeadHeight(), this.locZ))) {

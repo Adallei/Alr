@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Softik Lord <dimap9986@gmail.com>
+Date: Thu, 14 Jul 2022 06:28:11 +0500
+Subject: [PATCH] Fix teleport invisibility
+
+
+diff --git a/src/main/java/net/minecraft/server/EntityTrackerEntry.java b/src/main/java/net/minecraft/server/EntityTrackerEntry.java
+index efc4c79ab717effe2995e155dd29827ff68b8e5e..0fdf46c7586c58e006af96658d26bde834e06ba3 100644
+--- a/src/main/java/net/minecraft/server/EntityTrackerEntry.java
++++ b/src/main/java/net/minecraft/server/EntityTrackerEntry.java
+@@ -177,7 +177,7 @@ public class EntityTrackerEntry {
+                         this.v = 0;
+                         // CraftBukkit start - Refresh list of who can see a player before sending teleport packet
+                         if (this.tracker instanceof EntityPlayer) {
+-                            this.scanPlayers(new java.util.ArrayList(this.trackedPlayers));
++                            this.scanPlayers(new java.util.ArrayList(this.tracker.world.players)); // Alr - Fix teleport invisibility
+                         }
+                         // CraftBukkit end
+                         this.c();

@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Fri, 14 Aug 2026 19:38:27 +0800
+Subject: [PATCH] Remove version history
+
+
+diff --git a/src/main/java/net/minecraft/server/DedicatedServer.java b/src/main/java/net/minecraft/server/DedicatedServer.java
+index fa8d3fb09e391db1e803080a7fb89ed502b611b7..e7d1a14d48b16dfb99c2ab5b4f34e3cf0cc241fd 100644
+--- a/src/main/java/net/minecraft/server/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/DedicatedServer.java
+@@ -199,7 +199,6 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+             // Paper start
+             com.destroystokyo.paper.PaperConfig.init((File) options.valueOf("paper-settings"));
+             com.destroystokyo.paper.PaperConfig.registerCommands();
+-            com.destroystokyo.paper.VersionHistoryManager.INSTANCE.getClass(); // load version history now
+             // Paper end
+             // Alr start
+             com.adallei.alr.AlrConfig.init((File) options.valueOf("alr-settings"));

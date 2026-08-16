@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 16 Jul 2026 16:13:18 +0800
+Subject: [PATCH] EndGateWay age API
+
+
+diff --git a/src/main/java/net/minecraft/server/TileEntityEndGateway.java b/src/main/java/net/minecraft/server/TileEntityEndGateway.java
+index 557f06017b1bededaa7b9add58c7fcbdad766cec..c148175fe20a3e16677823b4fcffcd206c2e3d5c 100644
+--- a/src/main/java/net/minecraft/server/TileEntityEndGateway.java
++++ b/src/main/java/net/minecraft/server/TileEntityEndGateway.java
+@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
+ public class TileEntityEndGateway extends TileEntityEnderPortal implements ITickable {
+ 
+     private static final Logger a = LogManager.getLogger();
+-    private long f;
++    public long f; // Alr - EndGateWay-age-API
+     private int g;
+     public BlockPosition exitPortal;
+     public boolean exactTeleport;
+diff --git a/src/main/java/org/bukkit/craftbukkit/block/CraftEndGateway.java b/src/main/java/org/bukkit/craftbukkit/block/CraftEndGateway.java
+index 8ca614bd6e0d5873b7e881cd0c9ab8196c6b5e3f..3f94f0b28adacd4e6108a66ffee9380ad6954fb3 100644
+--- a/src/main/java/org/bukkit/craftbukkit/block/CraftEndGateway.java
++++ b/src/main/java/org/bukkit/craftbukkit/block/CraftEndGateway.java
+@@ -45,6 +45,16 @@ public class CraftEndGateway extends CraftBlockEntityState<TileEntityEndGateway>
+         this.getSnapshot().exactTeleport = exact;
+     }
+ 
++    @Override
++    public long getAge() {
++        return this.getSnapshot().f;
++    }
++
++    @Override
++    public void setAge(long age) {
++        this.getSnapshot().f = age;
++    }
++
+     @Override
+     public void applyTo(TileEntityEndGateway endGateway) {
+         super.applyTo(endGateway);

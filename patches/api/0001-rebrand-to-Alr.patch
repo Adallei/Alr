@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Thu, 16 Jul 2026 22:57:10 +0800
+Subject: [PATCH] Rebrand to Alr
+
+
+diff --git a/pom.xml b/pom.xml
+index 2fa2dd7c71e4f24f60e415c38ccf734c78713cbb..8abef115be6dc9533e8eb1812e707f595edde119 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -9,13 +9,13 @@
+         <version>dev-SNAPSHOT</version>
+     </parent>
+ 
+-    <groupId>com.destroystokyo.paper</groupId>
+-    <artifactId>paper-api</artifactId>
++    <groupId>com.adallei.alr</groupId>
++    <artifactId>alr-api</artifactId>
+     <version>1.12.2-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Paper-API</name>
+-    <url>https://github.com/PaperMC/Paper</url>
++    <name>Alr-API</name>
++    <url>https://mc.alr.re</url>
+     <description>An enhanced plugin API for Minecraft servers.</description>
+ 
+     <properties>

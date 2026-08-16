@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Tue, 16 Jun 2026 01:46:40 +0800
+Subject: [PATCH] Fix MC-158900
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerList.java b/src/main/java/net/minecraft/server/PlayerList.java
+index 80e9c9200c2afc3005c6a8bc5f5140eab71f4a40..1f2272da08bfb1a75c04e6326f34a4f9130ab0fb 100644
+--- a/src/main/java/net/minecraft/server/PlayerList.java
++++ b/src/main/java/net/minecraft/server/PlayerList.java
+@@ -531,10 +531,10 @@ public abstract class PlayerList {
+         Player player = entity.getBukkitEntity();
+         PlayerLoginEvent event = new PlayerLoginEvent(player, hostname, ((java.net.InetSocketAddress) socketaddress).getAddress(), ((java.net.InetSocketAddress) loginlistener.networkManager.getRawAddress()).getAddress());
+         String s;
+-
+-        if (getProfileBans().isBanned(gameprofile) && !getProfileBans().get(gameprofile).hasExpired()) {
+-            GameProfileBanEntry gameprofilebanentry = (GameProfileBanEntry) this.k.get(gameprofile);
+-
++        // Alr start - Fix MC-158900
++        GameProfileBanEntry gameprofilebanentry;
++        if (getProfileBans().isBanned(gameprofile) && (gameprofilebanentry = getProfileBans().get(gameprofile)) != null) {
++        // Alr end
+             s = "You are banned from this server!\nReason: " + gameprofilebanentry.getReason();
+             if (gameprofilebanentry.getExpires() != null) {
+                 s = s + "\nYour ban will be removed on " + PlayerList.g.format(gameprofilebanentry.getExpires());

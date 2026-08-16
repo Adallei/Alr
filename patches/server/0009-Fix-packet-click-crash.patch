@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ruViolence <78062896+ruViolence@users.noreply.github.com>
+Date: Tue, 18 Jul 2023 23:04:40 +0800
+Subject: [PATCH] Fix packet click crash
+
+
+diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
+index 59d5263295ec57981fb8a9cbab34a00bce904f70..12261bb9df14ae744b14b09138b8287b4dc7002b 100644
+--- a/src/main/java/net/minecraft/server/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/PlayerConnection.java
+@@ -1803,6 +1803,7 @@ public class PlayerConnection implements PacketListenerPlayIn, ITickable {
+                 if (packetplayinwindowclick.b() < -1 && packetplayinwindowclick.b() != -999) {
+                     return;
+                 }
++                if (this.player.activeContainer.slots.size() <= packetplayinwindowclick.b()) return; // Alr - Fix click crash
+ 
+                 InventoryView inventory = this.player.activeContainer.getBukkitView();
+                 SlotType type = CraftInventoryView.getSlotType(inventory, packetplayinwindowclick.b());

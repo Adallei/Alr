@@ -1,0 +1,63 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Fri, 21 Aug 2026 02:38:15 +0800
+Subject: [PATCH] Config improve flower pot placement
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrWorldConfig.java b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+index f20b33c0a5345a25d167f8495f2fe6e83ddb2062..e07f3d1341f690a02f90a1717fe23274625cc072 100644
+--- a/src/main/java/com/adallei/alr/AlrWorldConfig.java
++++ b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+@@ -83,4 +83,9 @@ public class AlrWorldConfig {
+     private void suffocationOptimization() {
+                 enableSuffocationOptimization = getBoolean("enable-suffocation-optimization", true);
+             }
++
++    public boolean improveFlowerPotPlacement= true;
++    private void improveFlowerPotPlacement(){
++        improveFlowerPotPlacement = getBoolean("improve-flower-pot-placement",true);
++    }
+ }
+diff --git a/src/main/java/net/minecraft/server/BlockFlowerPot.java b/src/main/java/net/minecraft/server/BlockFlowerPot.java
+index 2c6f25a909cf252b9b45af11667d156e14ea286f..e62d2e465b3971666999c4d593de0124a96a9733 100644
+--- a/src/main/java/net/minecraft/server/BlockFlowerPot.java
++++ b/src/main/java/net/minecraft/server/BlockFlowerPot.java
+@@ -96,15 +98,33 @@ public class BlockFlowerPot extends BlockTileEntity {
+     }
+ 
+     public boolean canPlace(World world, BlockPosition blockposition) {
+-        return super.canPlace(world, blockposition) && world.getType(blockposition.down()).q();
++        // Alr improve flower placement
++        if (!world.alrConfig.improveFlowerPotPlacement) {
++            return super.canPlace(world, blockposition) && world.getType(blockposition.down()).q();
++        }
++        else {
++            IBlockData downState = world.getType(blockposition.down());
++            return super.canPlace(world, blockposition) && (downState.q() || downState.d(world, blockposition.down(), EnumDirection.UP) == EnumBlockFaceShape.SOLID);
++        }
++        // Alr end
+     }
+ 
+     public void a(IBlockData iblockdata, World world, BlockPosition blockposition, Block block, BlockPosition blockposition1) {
+-        if (!world.getType(blockposition.down()).q()) {
+-            this.b(world, blockposition, iblockdata, 0);
+-            world.setAir(blockposition);
++        // Alr improve flower placement
++        if (!world.alrConfig.improveFlowerPotPlacement) {
++            if (!world.getType(blockposition.down()).q()) {
++                this.b(world, blockposition, iblockdata, 0);
++                world.setAir(blockposition);
++            }
+         }
+-
++        else {
++            IBlockData downState = world.getType(blockposition.down());
++            if (!downState.q() && downState.d(world, blockposition.down(), EnumDirection.UP) != EnumBlockFaceShape.SOLID) {
++                this.b(world, blockposition, iblockdata, 0);
++                world.setAir(blockposition);
++            }
++        }
++        // Alr end
+     }
+ 
+     public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {

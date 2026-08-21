@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Adallei <Adallei@outlook.com>
+Date: Fri, 21 Aug 2026 20:23:23 +0800
+Subject: [PATCH] Config player sneak height
+
+
+diff --git a/src/main/java/com/adallei/alr/AlrWorldConfig.java b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+index e07f3d1341f690a02f90a1717fe23274625cc072..ae347ba5df8022b333e78ebeddf634a1a9645337 100644
+--- a/src/main/java/com/adallei/alr/AlrWorldConfig.java
++++ b/src/main/java/com/adallei/alr/AlrWorldConfig.java
+@@ -88,4 +88,9 @@ public class AlrWorldConfig {
+     private void improveFlowerPotPlacement(){
+         improveFlowerPotPlacement = getBoolean("improve-flower-pot-placement",true);
+     }
++
++    public float playerSneakHeight = 1.65F;
++    private void playerSneakHeight(){
++        playerSneakHeight = getFloat("entity.player.player-sneak-height",1.65F);
++    }
+ }
+diff --git a/src/main/java/net/minecraft/server/EntityHuman.java b/src/main/java/net/minecraft/server/EntityHuman.java
+index f228b24853ede11625949215ad1308c10300b86e..91dfe24df26c7d69b29ba99228b0817b1c4d15e9 100644
+--- a/src/main/java/net/minecraft/server/EntityHuman.java
++++ b/src/main/java/net/minecraft/server/EntityHuman.java
+@@ -245,7 +245,7 @@ public abstract class EntityHuman extends EntityLiving {
+             f1 = 0.2F;
+         } else if (this.isSneaking()) {
+             f = 0.6F;
+-            f1 = 1.65F;
++            f1 = world.alrConfig.playerSneakHeight; // Alr player sneak height
+         } else {
+             f = 0.6F;
+             f1 = 1.8F;
